@@ -29,7 +29,8 @@ h1 {
 .active {
   color: white;
 }
-h6 {
+
+h3 {
   margin: 10px;
   text-align: center;
   background-color: #4e5357;

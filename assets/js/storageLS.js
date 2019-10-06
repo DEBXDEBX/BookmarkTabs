@@ -11,18 +11,25 @@ class StoreageLS {
 
   // Method getArrayFromFile
   getArrayFromFile() {
-    //Make a variable for array
-    let array;
     // Read file
     let textFromFile = localStorage.getItem(this.file);
 
     if (textFromFile) {
       //parse file
-      array = JSON.parse(textFromFile);
+      let array = JSON.parse(textFromFile);
+      // return array
+      return array;
     } else {
-      array = [];
+      let defaultArray = [];
+      // debugger;
+      let tab = new Tab("Home");
+      let bookmarkOne = new Bookmark("Google", "https://www.google.com/");
+      tab.arrayOfBookmarks.push(bookmarkOne);
+      let bookmarkTwo = new Bookmark("Amazon", "https://www.amazon.com/");
+      tab.arrayOfBookmarks.push(bookmarkTwo);
+      defaultArray.push(tab);
+      // return array
+      return defaultArray;
     }
-    // return array
-    return array;
   } // End getArrayFromFile method
 }
