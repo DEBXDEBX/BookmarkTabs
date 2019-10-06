@@ -26,10 +26,21 @@ h1 {
   color: var(--primary-color);
   text-shadow: 2px 2px var(--secondary-color);
 }
+#catForm,
+#bookmarkForm {
+  display: none;
+}
 .active {
   color: white;
 }
-
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 3px;
+  margin: 3px;
+}
 h3 {
   margin: 10px;
   text-align: center;
@@ -47,4 +58,46 @@ nav ul li {
   border-radius: 10px 10px 0px 0px;
   font-weight: 700;
   font-size: 1.2rem;
+}
+nav ul li:hover {
+  color: rgb(255, 255, 255);
+}
+
+.success,
+.error {
+  color: white;
+  padding: 20px;
+  text-align: center;
+  width: 50%;
+  border-radius: 25px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.success {
+  background: green;
+}
+
+.error {
+  background: red;
+}
+h3 > span {
+  font-weight: 900;
+  color: #2de11d;
+}
+#catForm,
+#bookmarkForm {
+  max-width: 70%;
+  margin: 14px auto;
+}
+
+.moveUp {
+  color: green;
+  display: inline;
+}
+.moveDown {
+  color: blue;
+  display: inline;
 }

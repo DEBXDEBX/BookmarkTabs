@@ -24,13 +24,47 @@ class Display {
   clearBookmarkDisplay() {
     this.elements.bookmarkList.innerHTML = "";
   } // End clearPrimaryDisplay()
-
+  //Method
+  showCatForm() {
+    this.displayBlock(this.elements.catForm);
+  }
+  hideCatForm() {
+    this.displayNone(this.elements.catForm);
+  }
+  //Method
+  showBookmarkForm() {
+    this.displayBlock(this.elements.bookmarkForm);
+  }
   paintCategorys(mappedArray) {
+    this.displayBlock(this.elements.catHeading);
+    this.displayNone(catList);
+    this.displayNone(bookmarkList);
     this.clearCategoryDisplay();
     this.clearBookmarkDisplay();
     this.displayNone(this.elements.catHeading);
     this.displayNone(this.elements.bookmarkHeading);
     this.displayBlock(this.elements.catHeading);
+    // make variable for html
+    let html = "";
+
+    mappedArray.forEach((element, index) => {
+      html += `<li data-index="${index}" class="cat">${element}</li>`;
+    });
+    this.elements.catList.innerHTML = html;
+
+    this.displayBlock(this.elements.catList);
+    // color tabs
+    let tabList = document.getElementsByClassName("cat");
+    this.colorSetOfTabs(tabList);
+  }
+
+  paintBookmarks(arrayOfBookmarks) {
+    this.displayNone(this.elements.bookmarkList);
+    this.clearBookmarkDisplay();
+    this.displayNone(this.elements.bookmarkHeading);
+    this.displayBlock(this.elements.bookmarkHeading);
+    // make variable for html
+    let html = "";
   }
 
   colorSetOfTabs(tabList) {
@@ -72,7 +106,7 @@ class Display {
     // Get parent
     const container = document.querySelector("body");
     // Insert alert other element
-    container.insertBefore(div, this.elements.bookmarkHeading);
+    container.insertBefore(div, this.elements.catform);
     // Timeout after 4 sec
     setTimeout(function() {
       document.querySelector(".alert").remove();
