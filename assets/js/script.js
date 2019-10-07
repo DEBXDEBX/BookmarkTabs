@@ -86,8 +86,7 @@ el.catList.addEventListener("click", e => {
       startUp();
       return;
     }
-    display.displayNone(el.bookmarkHeading);
-    display.displayNone(el.bookmarkList);
+
     renderCategorys();
     return;
   }
@@ -210,7 +209,7 @@ el.bookmarkList.addEventListener("click", e => {
   if (e.target.classList.contains("moveUp")) {
     // moveUpDownAudio.play();
     // get the index from the html
-    let index = e.target.parentElement.dataset.index;
+    let index = e.target.dataset.index;
     index = parseInt(index);
     //If index is zero. You can't move it any more so return
     if (index === 0) {
@@ -228,5 +227,49 @@ el.bookmarkList.addEventListener("click", e => {
     let storageLs = new StoreageLS();
     storageLs.setArrayToFileName(arrayOfTabs);
     renderBookmarks();
+    return;
+  }
+
+  if (e.target.classList.contains("moveDown")) {
+    // get the index from the html
+    let index = e.target.dataset.index;
+    index = parseInt(index);
+
+    let arr = arrayOfTabs[catIndex].arrayOfBookmarks;
+
+    //If index is equal to length - 1. You can't move it any more so return
+    if (index === arr.length - 1) {
+      return;
+    }
+    // get move to index
+    let moveTo = index + 1;
+
+    // swap array elements
+    [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
+    // save
+    let storageLs = new StoreageLS();
+    storageLs.setArrayToFileName(arrayOfTabs);
+    renderBookmarks();
+    return;
+  }
+
+  if (e.target.classList.contains("delete-item")) {
+    if (!e.ctrlKey) {
+      // warningEmptyAudio.play();
+      display.showAlert(
+        "You have to hold down ctrl key to make a deletion",
+        "error"
+      );
+      return;
+    }
+    // get the index from the html
+    let deleteIndex = e.target.parentElement.dataset.index;
+    deleteIndex = parseInt(deleteIndex);
+    arrayOfTabs[catIndex].arrayOfBookmarks.splice(deleteIndex, 1);
+    // save
+    let storageLs = new StoreageLS();
+    storageLs.setArrayToFileName(arrayOfTabs);
+    renderBookmarks();
+    return;
   }
 }); // End
