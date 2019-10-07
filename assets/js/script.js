@@ -3,6 +3,16 @@
 let arrayOfTabs = [];
 let catIndex = -243;
 let bookmarkIndex = -243;
+//Select audio files
+let addBookmarkAudio = document.querySelector("#addBookmarkAudio");
+let addTabAudio = document.querySelector("#addTabAudio");
+let btnAudio = document.querySelector("#btnAudio");
+let cancelAudio = document.querySelector("#cancelAudio");
+let clickAudio = document.querySelector("#clickAudio");
+let deleteAudio = document.querySelector("#deleteAudio");
+let tabAudio = document.querySelector("#tabAudio");
+let warning1Audio = document.querySelector("#warning1Audio");
+let warning2Audio = document.querySelector("#warning2Audio");
 // create elements object
 const el = new Elements();
 // Pass elements to display
@@ -18,8 +28,6 @@ window.onload = function() {
 //Start Up
 function startUp() {
   let storageLs = new StoreageLS();
-  // let array = storageLs.getArrayFromFile();
-  // console.log(array);
   arrayOfTabs = storageLs.getArrayFromFile();
   renderCategorys();
 }
@@ -52,21 +60,23 @@ function sortArrayByName(array) {
 } // End sortArrayByName(array)
 
 function renderCategorys() {
+  tabAudio.play();
   display.paintCategorys(mapNamesOut(arrayOfTabs));
 }
 
 function renderBookmarks() {
+  tabAudio.play();
   display.paintBookmarks(arrayOfTabs[catIndex].arrayOfBookmarks);
 }
 // when You click on the +/icon in the cat  heading
 el.addShowFormCat.addEventListener("click", e => {
-  // clickAudio.play();
+  clickAudio.play();
   display.showCatForm();
   display.displayNone(el.bookmarkList);
 });
 // when You click on the +/icon in the bookmark  heading
 el.addShowFormBookmark.addEventListener("click", e => {
-  // clickAudio.play();
+  clickAudio.play();
   display.showBookmarkForm();
 });
 
@@ -78,6 +88,7 @@ el.catList.addEventListener("click", e => {
     index = parseInt(index);
     catIndex = index;
     arrayOfTabs.splice(catIndex, 1);
+    deleteAudio.play();
     // save
     let storageLs = new StoreageLS();
     storageLs.setArrayToFileName(arrayOfTabs);
@@ -111,7 +122,7 @@ el.catList.addEventListener("click", e => {
     let index = e.target.dataset.index;
     index = parseInt(index);
     catIndex = index;
-    // tabAudio.play();
+    tabAudio.play();
     renderBookmarks();
   }
 });
@@ -122,7 +133,7 @@ el.addCatBtn.addEventListener("click", e => {
   let catName = el.textCat.value.trim();
   // check if text is empty
   if (catName === "") {
-    // warningEmptyAudio.play();
+    warning1Audio.play();
     display.showAlert("Please enter a name for the Categroy!", "error");
     return;
   }
@@ -139,13 +150,13 @@ el.addCatBtn.addEventListener("click", e => {
   });
   // check for taken name
   if (isTaken) {
-    // warningNameTakenAudio.play();
+    warning2Audio.play();
     display.showAlert("That name is taken", "error");
     catIndex = -243;
   } else {
     // push newTab into the array
     arrayOfTabs.push(newTab);
-
+    addBookmarkAudio.play();
     // sort array by name
     sortArrayByName(arrayOfTabs);
     // save
@@ -165,7 +176,7 @@ el.addCatBtn.addEventListener("click", e => {
 
 // when You click on cancel btn on the cat form
 el.cancelCatBtn.addEventListener("click", e => {
-  // cancelAudio.play();
+  cancelAudio.play();
   // reset form
   el.catForm.reset();
   // hide form
@@ -177,15 +188,18 @@ el.addBookmarkBtn.addEventListener("click", e => {
   let bookmarkName = el.textBookmark.value.trim();
   let bookmarkURL = el.textURL.value.trim();
   if (!bookmarkName) {
+    warning1Audio.play();
     display.showAlert("Please enter a name for the bookmark!", "error");
     return;
   }
   if (!bookmarkURL) {
+    warning2Audio.play();
     display.showAlert("Please enter an address for the bookmark!", "error");
     return;
   }
   let newBookmark = new Bookmark(bookmarkName, bookmarkURL);
   arrayOfTabs[catIndex].arrayOfBookmarks.push(newBookmark);
+  addBookmarkAudio.play();
 
   // save
   let storageLs = new StoreageLS();
@@ -197,7 +211,7 @@ el.addBookmarkBtn.addEventListener("click", e => {
 
 // when You click on cancel btn on the bookmark form
 el.cancelBookmarkBtn.addEventListener("click", e => {
-  // cancelAudio.play();
+  cancelAudio.play();
   // reset form
   el.bookmarkForm.reset();
   // hide form
@@ -221,7 +235,7 @@ el.bookmarkList.addEventListener("click", e => {
 
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
-    // btnAudio.play();
+    btnAudio.play();
     // write to file
     // save
     let storageLs = new StoreageLS();
@@ -246,6 +260,7 @@ el.bookmarkList.addEventListener("click", e => {
 
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
+    btnAudio.play();
     // save
     let storageLs = new StoreageLS();
     storageLs.setArrayToFileName(arrayOfTabs);
@@ -255,7 +270,7 @@ el.bookmarkList.addEventListener("click", e => {
 
   if (e.target.classList.contains("delete-item")) {
     if (!e.ctrlKey) {
-      // warningEmptyAudio.play();
+      warning1Audio.play();
       display.showAlert(
         "You have to hold down ctrl key to make a deletion",
         "error"
@@ -266,6 +281,7 @@ el.bookmarkList.addEventListener("click", e => {
     let deleteIndex = e.target.parentElement.dataset.index;
     deleteIndex = parseInt(deleteIndex);
     arrayOfTabs[catIndex].arrayOfBookmarks.splice(deleteIndex, 1);
+    deleteAudio.play();
     // save
     let storageLs = new StoreageLS();
     storageLs.setArrayToFileName(arrayOfTabs);

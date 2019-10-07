@@ -9,7 +9,7 @@
 /* Main Styling */
 html,
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Chelsea Market", cursive;
   line-height: 1.7em;
   background-color: black;
 }
@@ -19,7 +19,7 @@ a {
 /* Create Variables */
 :root {
   --primary-color: #0f0;
-  --secondary-color: #00f;
+  --secondary-color: #0af30a;
 }
 /* use Variables */
 h1 {
@@ -48,6 +48,10 @@ h3 {
   border-radius: 15px;
   padding: 0.45rem;
   color: white;
+  text-align: center;
+}
+h4 {
+  text-align: center;
 }
 nav ul li {
   list-style: none;
@@ -92,7 +96,10 @@ h3 > span {
   max-width: 70%;
   margin: 14px auto;
 }
-
+.delete-item {
+  color: red;
+  display: inline;
+}
 .moveUp {
   color: green;
   display: inline;
@@ -111,57 +118,51 @@ h3 > span {
 }
 span {
   font-weight: bold;
-}
-.delete-item {
-  color: red;
-  display: none;
+  margin: 0px 7px;
 }
 
 .myFlexItem:hover .delete-item {
   text-align: center;
-  /* font-size: 2em; */
   display: inline;
 }
-
 a {
-  font-size: 22px;
+  font-size: 30px;
   font-weight: bold;
-  color: #9622be;
-  text-decoration: underline;
+  color: black;
+  text-decoration: none;
   margin: 8px;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 a:hover {
-  color: #f8b500;
+  color: rgb(42, 6, 248);
+  text-decoration: none;
 }
 .myFlexItem {
-  background: #f5f3f6;
-  border-left: 4mm ridge rgb(170, 50, 220, 0.6);
-  border-bottom: thick double #a173b4;
-
+  background: #0af30a;
+  border-left: 4mm ridge #538956;
+  border-bottom: thick double #203c63;
   margin: 20px 7px 20px 7px;
-
   padding: 5px 10px 5px 10px;
-
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
+  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7); */
+  box-shadow: 3px 3px 3px rgb(103, 241, 11);
   border-radius: 10% / 50%;
 }
 .myFlexBox {
-  /*display: inline-flex;*/
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 3px 10px 3px 10px;
 }
-h1,
-h3,
-h6 {
-  color: #f8b500;
-  text-shadow: 2px 2px #9622be;
+
+/* The headings are h3  */
+h3 {
+  color: var(--primary-color);
+  text-shadow: 2px 2px black;
   text-align: center;
 }
-body {
-  background: linear-gradient(to bottom, #f8b500, #fff);
-  background-repeat: no-repeat;
-  font-family: "Permanent Marker", cursive;
+/* The gap between the show form icons  */
+#catAdd,
+#bookmarkAdd {
+  margin: 0px 46px;
 }

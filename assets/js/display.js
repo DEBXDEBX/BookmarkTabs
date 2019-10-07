@@ -83,19 +83,19 @@ class Display {
     // This function creates the div and append's it to the div.
     let newElement = document.createElement("div");
     //add a title with the web address
-    newElement.innerHTML = `<div class='myFlexItem'><a class='shrink' href="${address}" >${name}</a><div class='spanDiv'><span data-index="${index}" title='Move Left' class='moveUp'>&lArr;</span><span title='Delete' data-index="${index}" class='delete-item'>x</span><span title='Move Right' data-index="${index}" class='moveDown'>&rArr;</span></div>`;
+    newElement.innerHTML = `<div class='myFlexItem'><h4><a class='shrink' href="${address}" >${name}</a></h4><div class='spanDiv'><span data-index="${index}" title='Move Left' class='moveUp'>&lArr;</span><span title='Delete' data-index="${index}" class='delete-item'>x</span><span title='Move Right' data-index="${index}" class='moveDown'>&rArr;</span></div>`;
 
     this.elements.bookmarkList.appendChild(newElement);
   }
 
   colorSetOfTabs(tabList) {
     let tabColors = [
-      "#2de11d",
       "#4848e8",
       "#e84d4d",
       "Orange",
       "Violet",
       "#820ee8",
+      "#2de11d",
       "#8e7fc7",
       "#ff008b",
       "#17abf5",
