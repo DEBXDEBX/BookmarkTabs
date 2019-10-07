@@ -27,6 +27,8 @@ class Display {
   } // End clearPrimaryDisplay()
   //Method
   showCatForm() {
+    this.displayNone(this.elements.bookmarkHeading);
+    this.displayNone(this.elements.bookmarkForm);
     this.displayBlock(this.elements.catForm);
   }
   hideCatForm() {
@@ -61,20 +63,23 @@ class Display {
 
   paintBookmarks(bookmarkArray) {
     this.clearBookmarkDisplay();
+    this.displayNone(this.elements.bookmarkHeading);
     this.displayBlock(this.elements.bookmarkHeading);
     this.displayNone(this.elements.bookmarkList);
+    this.displayNone(this.elements.bookmarkForm);
+    this.displayNone(this.elements.catForm);
     //build bookmark div
-    console.log(bookmarkArray);
-    bookmarkArray.forEach(bm => {
+
+    bookmarkArray.forEach((bm, index) => {
       // createNewBookMarkDiv(bm.name, bm.address);
-      this.createNewBookMarkDiv(bm.name, bm.url);
+      this.createNewBookMarkDiv(bm.name, bm.url, index);
       //create a new div for each bookmark
     });
     this.displayBlock(this.elements.bookmarkList);
   }
 
   //Method
-  createNewBookMarkDiv(name, address) {
+  createNewBookMarkDiv(name, address, index) {
     // This function creates the div and append's it to the div.
     let newElement = document.createElement("div");
     //add a title with the web address

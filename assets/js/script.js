@@ -62,6 +62,7 @@ function renderBookmarks() {
 el.addShowFormCat.addEventListener("click", e => {
   // clickAudio.play();
   display.showCatForm();
+  display.displayNone(el.bookmarkList);
 });
 // when You click on the +/icon in the bookmark  heading
 el.addShowFormBookmark.addEventListener("click", e => {
@@ -70,6 +71,27 @@ el.addShowFormBookmark.addEventListener("click", e => {
 });
 
 el.catList.addEventListener("click", e => {
+  //check if control was down, if so delete
+  if (e.ctrlKey) {
+    // get the index from the html
+    let index = e.target.dataset.index;
+    index = parseInt(index);
+    catIndex = index;
+    arrayOfTabs.splice(catIndex, 1);
+    // save
+    let storageLs = new StoreageLS();
+    storageLs.setArrayToFileName(arrayOfTabs);
+
+    if (arrayOfTabs.length === 0) {
+      startUp();
+      return;
+    }
+    display.displayNone(el.bookmarkHeading);
+    display.displayNone(el.bookmarkList);
+    renderCategorys();
+    return;
+  }
+
   // event delegation
   if (e.target.classList.contains("cat")) {
     // set's the current target active
@@ -97,7 +119,6 @@ el.catList.addEventListener("click", e => {
 
 el.addCatBtn.addEventListener("click", e => {
   e.preventDefault();
-  debugger;
   // grab the text
   let catName = el.textCat.value.trim();
   // check if text is empty
@@ -137,17 +158,75 @@ el.addCatBtn.addEventListener("click", e => {
     display.hideCatForm();
     // reset form
     el.catForm.reset();
-    console.log(arrayOfTabs);
+
     // send array to display
     renderCategorys();
   } // End else statement
 });
 
-// when You click on cancel btn on the main folder form
+// when You click on cancel btn on the cat form
 el.cancelCatBtn.addEventListener("click", e => {
   // cancelAudio.play();
   // reset form
   el.catForm.reset();
   // hide form
   display.displayNone(el.catForm);
+}); // End
+
+el.addBookmarkBtn.addEventListener("click", e => {
+  e.preventDefault();
+  let bookmarkName = el.textBookmark.value.trim();
+  let bookmarkURL = el.textURL.value.trim();
+  if (!bookmarkName) {
+    display.showAlert("Please enter a name for the bookmark!", "error");
+    return;
+  }
+  if (!bookmarkURL) {
+    display.showAlert("Please enter an address for the bookmark!", "error");
+    return;
+  }
+  let newBookmark = new Bookmark(bookmarkName, bookmarkURL);
+  arrayOfTabs[catIndex].arrayOfBookmarks.push(newBookmark);
+
+  // save
+  let storageLs = new StoreageLS();
+  storageLs.setArrayToFileName(arrayOfTabs);
+  el.bookmarkForm.reset();
+  display.displayNone(el.bookmarkForm);
+  renderBookmarks();
+});
+
+// when You click on cancel btn on the bookmark form
+el.cancelBookmarkBtn.addEventListener("click", e => {
+  // cancelAudio.play();
+  // reset form
+  el.bookmarkForm.reset();
+  // hide form
+  display.displayNone(el.bookmarkForm);
+}); // End
+
+el.bookmarkList.addEventListener("click", e => {
+  //look for the span with a class of 'moveUp'
+  if (e.target.classList.contains("moveUp")) {
+    // moveUpDownAudio.play();
+    // get the index from the html
+    let index = e.target.parentElement.dataset.index;
+    index = parseInt(index);
+    //If index is zero. You can't move it any more so return
+    if (index === 0) {
+      return;
+    }
+    // get move to index
+    let moveTo = index - 1;
+    let arr = arrayOfTabs[catIndex].arrayOfBookmarks;
+
+    // swap array elements
+    [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
+    // btnAudio.play();
+    // write to file
+    // save
+    let storageLs = new StoreageLS();
+    storageLs.setArrayToFileName(arrayOfTabs);
+    renderBookmarks();
+  }
 }); // End
