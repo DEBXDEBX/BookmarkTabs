@@ -5,6 +5,7 @@ class Display {
     this.$ = $;
     this.tabColorIndex = 0;
   } // End constructor
+
   //Method
   displayNone(element) {
     this.$(element).slideUp("slow");
@@ -58,13 +59,33 @@ class Display {
     this.colorSetOfTabs(tabList);
   }
 
-  paintBookmarks(arrayOfBookmarks) {
-    this.displayNone(this.elements.bookmarkList);
+  paintBookmarks(bookmarkArray) {
     this.clearBookmarkDisplay();
-    this.displayNone(this.elements.bookmarkHeading);
     this.displayBlock(this.elements.bookmarkHeading);
-    // make variable for html
-    let html = "";
+    this.displayNone(this.elements.bookmarkList);
+    //build bookmark div
+    console.log(bookmarkArray);
+    bookmarkArray.forEach(bm => {
+      // createNewBookMarkDiv(bm.name, bm.address);
+      this.createNewBookMarkDiv(bm.name, bm.url);
+      //create a new div for each bookmark
+    });
+    this.displayBlock(this.elements.bookmarkList);
+  }
+
+  //Method
+  createNewBookMarkDiv(name, address) {
+    // This function creates the div and append's it to the div.
+    let newElement = document.createElement("div");
+    //add a title with the web address
+    newElement.innerHTML =
+      "<div class='myFlexItem'>" +
+      "<a class='shrink' href=\"" +
+      address +
+      ' ">' +
+      name +
+      "</a><div class='spanDiv'><span title='Move Left' class='moveUp'>&lArr;</span><span title='Delete' class='delete-item'>x</span><span title='Move Right' class='moveDown'>&rArr;</span></div>";
+    this.elements.bookmarkList.appendChild(newElement);
   }
 
   colorSetOfTabs(tabList) {
@@ -112,4 +133,4 @@ class Display {
       document.querySelector(".alert").remove();
     }, displayTime);
   } // End showAlert()
-}
+} // End class

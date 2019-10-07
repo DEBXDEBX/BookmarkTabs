@@ -101,3 +101,67 @@ h3 > span {
   color: blue;
   display: inline;
 }
+/* this hides and shows when you hover */
+.spanDiv {
+  display: none;
+}
+.myFlexItem:hover .spanDiv {
+  text-align: center;
+  display: block;
+}
+span {
+  font-weight: bold;
+}
+.delete-item {
+  color: red;
+  display: none;
+}
+
+.myFlexItem:hover .delete-item {
+  text-align: center;
+  /* font-size: 2em; */
+  display: inline;
+}
+
+a {
+  font-size: 22px;
+  font-weight: bold;
+  color: #9622be;
+  text-decoration: underline;
+  margin: 8px;
+}
+
+a:hover {
+  color: #f8b500;
+}
+.myFlexItem {
+  background: #f5f3f6;
+  border-left: 4mm ridge rgb(170, 50, 220, 0.6);
+  border-bottom: thick double #a173b4;
+
+  margin: 20px 7px 20px 7px;
+
+  padding: 5px 10px 5px 10px;
+
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.7);
+  border-radius: 10% / 50%;
+}
+.myFlexBox {
+  /*display: inline-flex;*/
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 3px 10px 3px 10px;
+}
+h1,
+h3,
+h6 {
+  color: #f8b500;
+  text-shadow: 2px 2px #9622be;
+  text-align: center;
+}
+body {
+  background: linear-gradient(to bottom, #f8b500, #fff);
+  background-repeat: no-repeat;
+  font-family: "Permanent Marker", cursive;
+}
