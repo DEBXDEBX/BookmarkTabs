@@ -35,6 +35,13 @@ function startUp() {
 //*************************************************** */
 // Helper functions
 //*************************************************** */
+
+function save() {
+  // save
+  let storageLs = new StoreageLS();
+  storageLs.setArrayToFileName(arrayOfTabs);
+}
+
 // create a new array with only the items name
 function mapNamesOut(array) {
   let mapedArray = array.map(item => {
@@ -60,12 +67,12 @@ function sortArrayByName(array) {
 } // End sortArrayByName(array)
 
 function renderCategorys() {
-  tabAudio.play();
+  // tabAudio.play();
   display.paintCategorys(mapNamesOut(arrayOfTabs));
 }
 
 function renderBookmarks() {
-  tabAudio.play();
+  // tabAudio.play();
   display.paintBookmarks(arrayOfTabs[catIndex].arrayOfBookmarks);
 }
 // when You click on the +/icon in the cat  heading
@@ -84,14 +91,14 @@ el.catList.addEventListener("click", e => {
   //check if control was down, if so delete
   if (e.ctrlKey) {
     // get the index from the html
+
     let index = e.target.dataset.index;
     index = parseInt(index);
     catIndex = index;
     arrayOfTabs.splice(catIndex, 1);
     deleteAudio.play();
     // save
-    let storageLs = new StoreageLS();
-    storageLs.setArrayToFileName(arrayOfTabs);
+    save();
 
     if (arrayOfTabs.length === 0) {
       startUp();
@@ -160,8 +167,7 @@ el.addCatBtn.addEventListener("click", e => {
     // sort array by name
     sortArrayByName(arrayOfTabs);
     // save
-    let storageLs = new StoreageLS();
-    storageLs.setArrayToFileName(arrayOfTabs);
+    save();
     // addAudio.play();
     display.showAlert("A new category was added", "success", 1500);
     // hide form
@@ -202,8 +208,7 @@ el.addBookmarkBtn.addEventListener("click", e => {
   addBookmarkAudio.play();
 
   // save
-  let storageLs = new StoreageLS();
-  storageLs.setArrayToFileName(arrayOfTabs);
+  save();
   el.bookmarkForm.reset();
   display.displayNone(el.bookmarkForm);
   renderBookmarks();
@@ -221,7 +226,6 @@ el.cancelBookmarkBtn.addEventListener("click", e => {
 el.bookmarkList.addEventListener("click", e => {
   //look for the span with a class of 'moveUp'
   if (e.target.classList.contains("moveUp")) {
-    // moveUpDownAudio.play();
     // get the index from the html
     let index = e.target.dataset.index;
     index = parseInt(index);
@@ -236,10 +240,8 @@ el.bookmarkList.addEventListener("click", e => {
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
     btnAudio.play();
-    // write to file
     // save
-    let storageLs = new StoreageLS();
-    storageLs.setArrayToFileName(arrayOfTabs);
+    save();
     renderBookmarks();
     return;
   }
@@ -262,8 +264,7 @@ el.bookmarkList.addEventListener("click", e => {
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
     btnAudio.play();
     // save
-    let storageLs = new StoreageLS();
-    storageLs.setArrayToFileName(arrayOfTabs);
+    save();
     renderBookmarks();
     return;
   }
@@ -277,14 +278,14 @@ el.bookmarkList.addEventListener("click", e => {
       );
       return;
     }
+    debugger;
     // get the index from the html
-    let deleteIndex = e.target.parentElement.dataset.index;
+    let deleteIndex = e.target.dataset.index;
     deleteIndex = parseInt(deleteIndex);
     arrayOfTabs[catIndex].arrayOfBookmarks.splice(deleteIndex, 1);
     deleteAudio.play();
     // save
-    let storageLs = new StoreageLS();
-    storageLs.setArrayToFileName(arrayOfTabs);
+    save();
     renderBookmarks();
     return;
   }
