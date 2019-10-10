@@ -83,7 +83,11 @@ class Display {
     // This function creates the div and append's it to the div.
     let newElement = document.createElement("div");
     //add a title with the web address
-    newElement.innerHTML = `<div class='myFlexItem'><h4><a href="${address}" >${name}</a></h4><div class='spanDiv'><span data-index="${index}" title='Move Left' class='moveUp'>&lArr;</span><span title='Delete' data-index="${index}" class='delete-item'>x</span><span title='Move Right' data-index="${index}" class='moveDown'>&rArr;</span></div>`;
+    newElement.innerHTML = `<div class='myFlexItem'><h4><a href="${address}" >${name}</a></h4><div class='spanDiv'><span data-index="${index}" title='Move Left' class='moveUp'>&lArr;</span><span title='Delete' data-index="${index}" ><i
+    title="Delete Bookmark"
+    class="delete-item fas fa-trash-alt"
+  ></i
+></span><span title='Move Right' data-index="${index}" class='moveDown'>&rArr;</span></div>`;
 
     this.elements.bookmarkList.appendChild(newElement);
   }

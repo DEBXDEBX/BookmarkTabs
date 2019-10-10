@@ -278,9 +278,8 @@ el.bookmarkList.addEventListener("click", e => {
       );
       return;
     }
-    debugger;
     // get the index from the html
-    let deleteIndex = e.target.dataset.index;
+    let deleteIndex = e.target.parentElement.dataset.index;
     deleteIndex = parseInt(deleteIndex);
     arrayOfTabs[catIndex].arrayOfBookmarks.splice(deleteIndex, 1);
     deleteAudio.play();
