@@ -135,7 +135,7 @@ a {
 }
 
 a:hover {
-  color: rgb(42, 6, 248);
+  color: white;
   text-decoration: none;
 }
 .myFlexItem {
