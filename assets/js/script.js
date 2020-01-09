@@ -289,3 +289,19 @@ el.bookmarkList.addEventListener("click", e => {
     return;
   }
 }); // End
+
+// on or off line
+window.addEventListener("online", e => {
+  el.onLineStatus.innerHTML = `<H1 class="online">Online</H1>`;
+  // Timeout after 4 sec
+  let displayTime = 7000;
+  setTimeout(function() {
+    document.querySelector(".online").remove();
+  }, displayTime);
+});
+window.addEventListener(
+  "offline",
+  e => (el.onLineStatus.innerHTML = `<H1 class="offline">Offline</H1>`)
+);
+
+// end on or off line

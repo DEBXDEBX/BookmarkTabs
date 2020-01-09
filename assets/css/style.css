@@ -166,3 +166,9 @@ h3 {
 #bookmarkAdd {
   margin: 0px 46px;
 }
+
+/* on or off line  */
+.online,
+.offline {
+  text-align: center;
+}
