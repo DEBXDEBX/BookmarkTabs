@@ -290,29 +290,12 @@ el.bookmarkList.addEventListener("click", e => {
   }
 }); // End
 
-// on or off line
+// check if on or off line
 if (navigator.onLine) {
-  el.onLineStatus.innerHTML = `<H1 class="online">Online</H1>`;
-  // Timeout after 4 sec
-  let displayTime = 7000;
-  setTimeout(function() {
-    document.querySelector(".online").remove();
-  }, displayTime);
+  display.onlineMessage();
 } else {
-  el.onLineStatus.innerHTML = `<H1 class="offline">Offline</H1>`;
+  display.offlineMessage();
 }
-
-window.addEventListener("online", e => {
-  el.onLineStatus.innerHTML = `<H1 class="online">Online</H1>`;
-  // Timeout after 4 sec
-  let displayTime = 7000;
-  setTimeout(function() {
-    document.querySelector(".online").remove();
-  }, displayTime);
-});
-window.addEventListener(
-  "offline",
-  e => (el.onLineStatus.innerHTML = `<H1 class="offline">Offline</H1>`)
-);
-
-// end on or off line
+// listen for events on or off line
+window.addEventListener("online", e => display.onlineMessage());
+window.addEventListener("offline", e => display.offlineMessage());

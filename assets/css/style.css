@@ -172,3 +172,8 @@ h3 {
 .offline {
   text-align: center;
 }
+
+.offline {
+  color: red;
+  text-shadow: 2px 2px red;
+}
