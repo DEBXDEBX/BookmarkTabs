@@ -291,6 +291,17 @@ el.bookmarkList.addEventListener("click", e => {
 }); // End
 
 // on or off line
+if (navigator.onLine) {
+  el.onLineStatus.innerHTML = `<H1 class="online">Online</H1>`;
+  // Timeout after 4 sec
+  let displayTime = 7000;
+  setTimeout(function() {
+    document.querySelector(".online").remove();
+  }, displayTime);
+} else {
+  el.onLineStatus.innerHTML = `<H1 class="offline">Offline</H1>`;
+}
+
 window.addEventListener("online", e => {
   el.onLineStatus.innerHTML = `<H1 class="online">Online</H1>`;
   // Timeout after 4 sec
