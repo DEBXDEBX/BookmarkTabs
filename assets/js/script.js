@@ -299,3 +299,12 @@ if (navigator.onLine) {
 // listen for events on or off line
 window.addEventListener("online", e => display.onlineMessage());
 window.addEventListener("offline", e => display.offlineMessage());
+
+document.querySelector("#googleBtn").addEventListener("click", e => {
+  e.preventDefault();
+  let inputBox = document.querySelector("#googleSearchInput");
+  let searchTerm = inputBox.value;
+  inputBox.value = "";
+
+  window.open("http://google.com/search?q=" + searchTerm);
+});

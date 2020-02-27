@@ -177,3 +177,36 @@ h3 {
   color: red;
   text-shadow: 2px 2px red;
 }
+#status {
+  margin-top: 25px;
+}
+
+/* *********************************** */
+/* google search  */
+#googleSearchContainer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+#googleSearchInput {
+  border: 2px solid var(--primary-color);
+  border-radius: 50px;
+  padding: 10px;
+}
+#googleSearchInput:focus {
+  border: 2px solid red;
+  border-radius: 50px;
+  outline: none;
+}
+#googleBtn {
+  background-color: #e52674;
+  font-weight: bolder;
+  border: 2px solid var(--primary-color);
+  border-radius: 50px;
+  padding: 10px;
+  outline: none;
+}
+#googleBtn:hover {
+  background-color: chartreuse;
+  border: 2px solid #e52674;
+}
