@@ -192,6 +192,7 @@ h3 {
   border: 2px solid var(--primary-color);
   border-radius: 50px;
   padding: 10px;
+  color: #e52674;
 }
 #googleSearchInput:focus {
   border: 2px solid red;
@@ -209,4 +210,5 @@ h3 {
 #googleBtn:hover {
   background-color: chartreuse;
   border: 2px solid #e52674;
+  color: #e52674;
 }
