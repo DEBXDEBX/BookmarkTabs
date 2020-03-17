@@ -303,15 +303,21 @@ window.addEventListener("offline", e => display.offlineMessage());
 // Search box
 document.querySelector("#googleBtn").addEventListener("click", e => {
   e.preventDefault();
+  console.log(e);
   let inputBox = document.querySelector("#googleSearchInput");
   let searchTerm = inputBox.value;
   if (e.ctrlKey) {
     inputBox.value = "";
     // search MDN
     window.open("https://developer.mozilla.org/en-US/search?q=" + searchTerm);
-    return;
+    // return;
   }
-
+  if (e.shiftKey) {
+    inputBox.value = "";
+    // search Youtube
+    window.open("https://www.youtube.com/results?search_query=" + searchTerm);
+    // return;
+  }
   inputBox.value = "";
   //search google
   window.open("http://google.com/search?q=" + searchTerm);
