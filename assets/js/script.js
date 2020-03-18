@@ -318,6 +318,11 @@ document.querySelector("#googleBtn").addEventListener("click", e => {
     window.open("https://www.youtube.com/results?search_query=" + searchTerm);
     // return;
   }
+  if (e.altKey) {
+    inputBox.value = "";
+    // search stack overflow
+    window.open("https://stackoverflow.com/search?q=" + searchTerm);
+  }
   inputBox.value = "";
   //search google
   window.open("http://google.com/search?q=" + searchTerm);
