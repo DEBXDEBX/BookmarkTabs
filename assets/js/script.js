@@ -18,11 +18,11 @@ const el = new Elements();
 // Pass elements to display
 const display = new Display(el, $);
 //This enables JQuery ToolTips
-$(document).ready(function() {
+$(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
 });
 //The start of program exicution.
-window.onload = function() {
+window.onload = function () {
   startUp();
 };
 //Start Up
@@ -30,11 +30,34 @@ function startUp() {
   let storageLs = new StoreageLS();
   arrayOfTabs = storageLs.getArrayFromFile();
   renderCategorys();
+  // If you have Home catogory display it's bookmarks
+  HomeList();
 }
 
 //*************************************************** */
 // Helper functions
 //*************************************************** */
+
+const HomeList = () => {
+  // grab all the catorgory's
+  let tabList = document.getElementsByClassName("cat");
+  // create an array from an array like object
+  let newArray = Array.from(tabList);
+  // Check for Home
+  let index = -243;
+  newArray.forEach((item) => {
+    if (item.textContent === "Home") {
+      // get index form Html
+      index = parseInt(item.dataset.index);
+    }
+  });
+  //  if you found Home display it's bookmarks and and active class
+  if (index >= 0) {
+    newArray[index].classList.add("active");
+    catIndex = index;
+    renderBookmarks();
+  }
+};
 
 function save() {
   // save
@@ -44,7 +67,7 @@ function save() {
 
 // create a new array with only the items name
 function mapNamesOut(array) {
-  let mapedArray = array.map(item => {
+  let mapedArray = array.map((item) => {
     return item.name;
   });
   return mapedArray;
@@ -52,7 +75,7 @@ function mapNamesOut(array) {
 
 // Sort an array by it's name
 function sortArrayByName(array) {
-  array.sort(function(a, b) {
+  array.sort(function (a, b) {
     var nameA = a.name.toUpperCase(); // ignore upper and lowercase
     var nameB = b.name.toUpperCase(); // ignore upper and lowercase
     if (nameA < nameB) {
@@ -76,18 +99,18 @@ function renderBookmarks() {
   display.paintBookmarks(arrayOfTabs[catIndex].arrayOfBookmarks);
 }
 // when You click on the +/icon in the cat  heading
-el.addShowFormCat.addEventListener("click", e => {
+el.addShowFormCat.addEventListener("click", (e) => {
   clickAudio.play();
   display.showCatForm();
   display.displayNone(el.bookmarkList);
 });
 // when You click on the +/icon in the bookmark  heading
-el.addShowFormBookmark.addEventListener("click", e => {
+el.addShowFormBookmark.addEventListener("click", (e) => {
   clickAudio.play();
   display.showBookmarkForm();
 });
 
-el.catList.addEventListener("click", e => {
+el.catList.addEventListener("click", (e) => {
   //check if control was down, if so delete
   if (e.ctrlKey) {
     // get the index from the html
@@ -116,7 +139,7 @@ el.catList.addEventListener("click", e => {
     //The Next code is to set the current tab color white with the active class
     var el = document.querySelectorAll(".cat");
     for (let i = 0; i < el.length; i++) {
-      el[i].onclick = function() {
+      el[i].onclick = function () {
         var c = 0;
         while (c < el.length) {
           el[c++].className = "cat";
@@ -134,7 +157,7 @@ el.catList.addEventListener("click", e => {
   }
 });
 
-el.addCatBtn.addEventListener("click", e => {
+el.addCatBtn.addEventListener("click", (e) => {
   e.preventDefault();
   // grab the text
   let catName = el.textCat.value.trim();
@@ -150,7 +173,7 @@ el.addCatBtn.addEventListener("click", e => {
   // check if the name already exists if it does alert and return and set current main folder to -243
   // make a variable to return
   let isTaken = false;
-  arrayOfTabs.forEach(element => {
+  arrayOfTabs.forEach((element) => {
     if (catName === element.name) {
       isTaken = true;
     }
@@ -181,7 +204,7 @@ el.addCatBtn.addEventListener("click", e => {
 });
 
 // when You click on cancel btn on the cat form
-el.cancelCatBtn.addEventListener("click", e => {
+el.cancelCatBtn.addEventListener("click", (e) => {
   cancelAudio.play();
   // reset form
   el.catForm.reset();
@@ -189,7 +212,7 @@ el.cancelCatBtn.addEventListener("click", e => {
   display.displayNone(el.catForm);
 }); // End
 
-el.addBookmarkBtn.addEventListener("click", e => {
+el.addBookmarkBtn.addEventListener("click", (e) => {
   e.preventDefault();
   let bookmarkName = el.textBookmark.value.trim();
   let bookmarkURL = el.textURL.value.trim();
@@ -215,7 +238,7 @@ el.addBookmarkBtn.addEventListener("click", e => {
 });
 
 // when You click on cancel btn on the bookmark form
-el.cancelBookmarkBtn.addEventListener("click", e => {
+el.cancelBookmarkBtn.addEventListener("click", (e) => {
   cancelAudio.play();
   // reset form
   el.bookmarkForm.reset();
@@ -223,7 +246,7 @@ el.cancelBookmarkBtn.addEventListener("click", e => {
   display.displayNone(el.bookmarkForm);
 }); // End
 
-el.bookmarkList.addEventListener("click", e => {
+el.bookmarkList.addEventListener("click", (e) => {
   //look for the span with a class of 'moveUp'
   if (e.target.classList.contains("moveUp")) {
     // get the index from the html
@@ -297,11 +320,11 @@ if (navigator.onLine) {
   display.offlineMessage();
 }
 // listen for events on or off line
-window.addEventListener("online", e => display.onlineMessage());
-window.addEventListener("offline", e => display.offlineMessage());
+window.addEventListener("online", (e) => display.onlineMessage());
+window.addEventListener("offline", (e) => display.offlineMessage());
 
 // Search box
-document.querySelector("#googleBtn").addEventListener("click", e => {
+document.querySelector("#googleBtn").addEventListener("click", (e) => {
   e.preventDefault();
   console.log(e);
   let inputBox = document.querySelector("#googleSearchInput");
