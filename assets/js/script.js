@@ -335,6 +335,7 @@ document.querySelector("#googleBtn").addEventListener("click", (e) => {
 });
 
 document.querySelector("#mdnBtn").addEventListener("click", (e) => {
+  e.preventDefault();
   let inputBox = document.querySelector("#googleSearchInput");
   let searchTerm = inputBox.value;
   inputBox.value = "";
@@ -342,6 +343,7 @@ document.querySelector("#mdnBtn").addEventListener("click", (e) => {
   window.open("https://developer.mozilla.org/en-US/search?q=" + searchTerm);
 });
 document.querySelector("#youTubeBtn").addEventListener("click", (e) => {
+  e.preventDefault();
   let inputBox = document.querySelector("#googleSearchInput");
   let searchTerm = inputBox.value;
   inputBox.value = "";
@@ -349,6 +351,7 @@ document.querySelector("#youTubeBtn").addEventListener("click", (e) => {
   window.open("https://www.youtube.com/results?search_query=" + searchTerm);
 });
 document.querySelector("#stackOverflowBtn").addEventListener("click", (e) => {
+  e.preventDefault();
   let inputBox = document.querySelector("#googleSearchInput");
   let searchTerm = inputBox.value;
   inputBox.value = "";
