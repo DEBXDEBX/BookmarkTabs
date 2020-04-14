@@ -199,15 +199,15 @@ h3 {
   border-radius: 50px;
   outline: none;
 }
-#googleBtn {
+.searchBtn {
   background-color: #e52674;
   font-weight: bolder;
   border: 2px solid var(--primary-color);
-  border-radius: 50px;
+  border-radius: 5px;
   padding: 10px;
   outline: none;
 }
-#googleBtn:hover {
+.searchBtn:hover {
   background-color: chartreuse;
   border: 2px solid #e52674;
   color: #e52674;

@@ -326,27 +326,32 @@ window.addEventListener("offline", (e) => display.offlineMessage());
 // Search box
 document.querySelector("#googleBtn").addEventListener("click", (e) => {
   e.preventDefault();
-  console.log(e);
   let inputBox = document.querySelector("#googleSearchInput");
   let searchTerm = inputBox.value;
-  if (e.ctrlKey) {
-    inputBox.value = "";
-    // search MDN
-    window.open("https://developer.mozilla.org/en-US/search?q=" + searchTerm);
-    // return;
-  }
-  if (e.shiftKey) {
-    inputBox.value = "";
-    // search Youtube
-    window.open("https://www.youtube.com/results?search_query=" + searchTerm);
-    // return;
-  }
-  if (e.altKey) {
-    inputBox.value = "";
-    // search stack overflow
-    window.open("https://stackoverflow.com/search?q=" + searchTerm);
-  }
+
   inputBox.value = "";
   //search google
   window.open("http://google.com/search?q=" + searchTerm);
+});
+
+document.querySelector("#mdnBtn").addEventListener("click", (e) => {
+  let inputBox = document.querySelector("#googleSearchInput");
+  let searchTerm = inputBox.value;
+  inputBox.value = "";
+  // search MDN
+  window.open("https://developer.mozilla.org/en-US/search?q=" + searchTerm);
+});
+document.querySelector("#youTubeBtn").addEventListener("click", (e) => {
+  let inputBox = document.querySelector("#googleSearchInput");
+  let searchTerm = inputBox.value;
+  inputBox.value = "";
+  // search Youtube
+  window.open("https://www.youtube.com/results?search_query=" + searchTerm);
+});
+document.querySelector("#stackOverflowBtn").addEventListener("click", (e) => {
+  let inputBox = document.querySelector("#googleSearchInput");
+  let searchTerm = inputBox.value;
+  inputBox.value = "";
+  // search stack overflow
+  window.open("https://stackoverflow.com/search?q=" + searchTerm);
 });
