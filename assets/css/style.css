@@ -208,7 +208,17 @@ h3 {
   outline: none;
 }
 .searchBtn:hover {
-  background-color: chartreuse;
+  background-color: chartreuse;s
   border: 2px solid #e52674;
   color: #e52674;
+}
+
+#searchForm {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#searchForm button, input{
+margin: 9px;
 }
