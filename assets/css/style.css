@@ -208,7 +208,7 @@ h3 {
   outline: none;
 }
 .searchBtn:hover {
-  background-color: chartreuse;s
+  background-color: chartreuse;
   border: 2px solid #e52674;
   color: #e52674;
 }
@@ -219,6 +219,7 @@ h3 {
   flex-wrap: wrap;
 }
 
-#searchForm button, input{
-margin: 9px;
+#searchForm button,
+input {
+  margin: 9px;
 }
