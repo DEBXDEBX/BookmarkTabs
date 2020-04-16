@@ -32,12 +32,15 @@ function startUp() {
   renderCategorys();
   // If you have Home catogory display it's bookmarks
   HomeList();
+  getAndSetDate();
 }
 
 //*************************************************** */
 // Helper functions
 //*************************************************** */
-
+const getAndSetDate = () => {
+  el.todayDate.textContent = new Date().toDateString();
+};
 const HomeList = () => {
   // grab all the catorgory's
   let tabList = document.getElementsByClassName("cat");

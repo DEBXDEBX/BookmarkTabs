@@ -21,7 +21,7 @@ a {
   --primary-color: #0f0;
   --secondary-color: #0af30a;
 }
-/* use Variables */
+/* use Variables  */
 h1 {
   color: var(--primary-color);
   text-shadow: 2px 2px var(--secondary-color);
@@ -222,4 +222,9 @@ h3 {
 #searchForm button,
 input {
   margin: 9px;
+}
+
+#todayDate {
+  text-align: center;
+  color: #e52674;
 }
