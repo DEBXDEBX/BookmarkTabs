@@ -32,13 +32,14 @@ function startUp() {
   renderCategorys();
   // If you have Home catogory display it's bookmarks
   HomeList();
-  getAndSetDate();
+  // show the date
+  getAndShowDate();
 }
 
 //*************************************************** */
 // Helper functions
 //*************************************************** */
-const getAndSetDate = () => {
+const getAndShowDate = () => {
   el.todayDate.textContent = new Date().toDateString();
 };
 const HomeList = () => {
