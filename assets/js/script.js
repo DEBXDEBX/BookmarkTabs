@@ -214,6 +214,7 @@ el.cancelCatBtn.addEventListener("click", (e) => {
   el.catForm.reset();
   // hide form
   display.displayNone(el.catForm);
+  display.paintCategorys(mapNamesOut(arrayOfTabs));
 }); // End
 
 el.addBookmarkBtn.addEventListener("click", (e) => {
@@ -330,6 +331,7 @@ window.addEventListener("offline", (e) => display.offlineMessage());
 // Search box
 document.querySelector("#googleBtn").addEventListener("click", (e) => {
   e.preventDefault();
+  clickAudio.play();
   let inputBox = document.querySelector("#googleSearchInput");
   let searchTerm = inputBox.value;
 
@@ -340,6 +342,7 @@ document.querySelector("#googleBtn").addEventListener("click", (e) => {
 
 document.querySelector("#mdnBtn").addEventListener("click", (e) => {
   e.preventDefault();
+  clickAudio.play();
   let inputBox = document.querySelector("#googleSearchInput");
   let searchTerm = inputBox.value;
   inputBox.value = "";
@@ -348,6 +351,7 @@ document.querySelector("#mdnBtn").addEventListener("click", (e) => {
 });
 document.querySelector("#youTubeBtn").addEventListener("click", (e) => {
   e.preventDefault();
+  clickAudio.play();
   let inputBox = document.querySelector("#googleSearchInput");
   let searchTerm = inputBox.value;
   inputBox.value = "";
@@ -356,6 +360,7 @@ document.querySelector("#youTubeBtn").addEventListener("click", (e) => {
 });
 document.querySelector("#stackOverflowBtn").addEventListener("click", (e) => {
   e.preventDefault();
+  clickAudio.play();
   let inputBox = document.querySelector("#googleSearchInput");
   let searchTerm = inputBox.value;
   inputBox.value = "";
