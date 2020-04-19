@@ -13,6 +13,8 @@ let deleteAudio = document.querySelector("#deleteAudio");
 let tabAudio = document.querySelector("#tabAudio");
 let warning1Audio = document.querySelector("#warning1Audio");
 let warning2Audio = document.querySelector("#warning2Audio");
+// time insert
+let timeH1 = document.querySelector("#todayTime");
 // create elements object
 const el = new Elements();
 // Pass elements to display
@@ -34,6 +36,8 @@ function startUp() {
   HomeList();
   // show the date
   getAndShowDate();
+  // call once so you can see time on load of page
+  displayTime();
 }
 
 //*************************************************** */
@@ -374,3 +378,24 @@ document.querySelector("#stackOverflowBtn").addEventListener("click", (e) => {
   // search stack overflow
   window.open("https://stackoverflow.com/search?q=" + searchTerm);
 });
+
+//  code for the time display
+// ****************************************************
+function displayTime() {
+  let today = new Date();
+  let hoursFromDate = today.getHours();
+  let hours;
+  if (hoursFromDate > 12) {
+    hours = hoursFromDate - 12;
+  } else {
+    hours = hoursFromDate;
+  }
+  let time = `${hours}:${today.getMinutes()} ${
+    hoursFromDate < 12 ? "AM" : "PM"
+  }`;
+  // insert time
+  timeH1.textContent = time;
+}
+// call every 30 seconds
+setInterval(displayTime, 30000);
+// end of code for the time display

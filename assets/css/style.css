@@ -224,7 +224,8 @@ input {
   margin: 9px;
 }
 
-#todayDate {
+#todayDate,
+#todayTime {
   text-align: center;
   color: #e52674;
 }
