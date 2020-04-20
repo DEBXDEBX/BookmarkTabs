@@ -19,6 +19,8 @@ let timeH1 = document.querySelector("#todayTime");
 const el = new Elements();
 // Pass elements to display
 const display = new Display(el, $);
+// declair date
+let today = new Date();
 //This enables JQuery ToolTips
 $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
@@ -44,7 +46,7 @@ function startUp() {
 // Helper functions
 //*************************************************** */
 const getAndShowDate = () => {
-  el.todayDate.textContent = new Date().toDateString();
+  el.todayDate.textContent = today.toDateString();
 };
 const HomeList = () => {
   // grab all the catorgory's
@@ -111,11 +113,13 @@ el.addShowFormCat.addEventListener("click", (e) => {
   clickAudio.play();
   display.showCatForm();
   display.displayNone(el.bookmarkList);
+  this.textCat.focus();
 });
 // when You click on the +/icon in the bookmark  heading
 el.addShowFormBookmark.addEventListener("click", (e) => {
   clickAudio.play();
   display.showBookmarkForm();
+  this.textBookmark.focus();
 });
 
 el.catList.addEventListener("click", (e) => {
@@ -382,17 +386,18 @@ document.querySelector("#stackOverflowBtn").addEventListener("click", (e) => {
 //  code for the time display
 // ****************************************************
 function displayTime() {
-  let today = new Date();
   let hoursFromDate = today.getHours();
-  let hours;
-  if (hoursFromDate > 12) {
-    hours = hoursFromDate - 12;
-  } else {
-    hours = hoursFromDate;
-  }
-  let time = `${hours}:${today.getMinutes()} ${
-    hoursFromDate < 12 ? "AM" : "PM"
-  }`;
+  // let hours;
+  // if (hoursFromDate > 12) {
+  //   hours = hoursFromDate - 12;
+  // } else {
+  //   hours = hoursFromDate;
+  // }
+  let hours = hoursFromDate > 12 ? hoursFromDate - 12 : hoursFromDate;
+
+  let minutes =
+    today.getMinutes < 10 ? `0${today.getMinutes()}` : today.getMinutes();
+  let time = `${hours}:${minutes} ${hoursFromDate < 12 ? "AM" : "PM"}`;
   // insert time
   timeH1.textContent = time;
 }
