@@ -392,11 +392,11 @@ function displayTime() {
   let hours = hoursFromDate > 12 ? hoursFromDate - 12 : hoursFromDate;
 
   let minutes =
-    today.getMinutes < 10 ? `0${today.getMinutes()}` : today.getMinutes();
+    today.getMinutes() < 10 ? `0${today.getMinutes()}` : today.getMinutes();
   let time = `${hours}:${minutes} ${hoursFromDate < 12 ? "AM" : "PM"}`;
   // insert time
   timeH1.textContent = time;
 }
 // call every 30 seconds
-setInterval(displayTime, 30000);
+setInterval(displayTime, 20000);
 // end of code for the time display
