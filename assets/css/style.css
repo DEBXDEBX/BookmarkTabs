@@ -180,7 +180,9 @@ h3 {
 #status {
   margin-top: 25px;
 }
-
+.cat:hover {
+  cursor: pointer;
+}
 /* *********************************** */
 /* google search  */
 #googleSearchContainer {
@@ -211,6 +213,7 @@ h3 {
   background-color: chartreuse;
   border: 2px solid #e52674;
   color: #e52674;
+  cursor: pointer;
 }
 
 #searchForm {
@@ -223,7 +226,21 @@ h3 {
 input {
   margin: 9px;
 }
-
+.moveUp:hover {
+  cursor: pointer;
+}
+.moveDown:hover {
+  cursor: pointer;
+}
+.delete-item {
+  cursor: pointer;
+}
+.fas:hover {
+  cursor: pointer;
+}
+input[type="text"]:hover {
+  cursor: pointer;
+}
 #todayDate,
 #todayTime {
   text-align: center;
