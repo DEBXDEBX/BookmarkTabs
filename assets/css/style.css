@@ -70,7 +70,6 @@ nav ul li:hover {
 /* CODE FOR MESSAGES  */
 .success,
 .error {
-  background-color: black;
   padding: 20px;
   text-align: center;
   width: 100%;
@@ -82,6 +81,10 @@ nav ul li:hover {
 }
 .success {
   color: #2de11d;
+}
+.black {
+  background-color: black;
+  border-bottom: 7px solid black;
 }
 /* END CODE FOR MESSAGES  */
 h3 > span {
