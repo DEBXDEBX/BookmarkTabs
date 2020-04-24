@@ -27,5 +27,7 @@ class Elements {
     this.onLineStatus = document.querySelector("#status");
     // todays date
     this.todayDate = document.querySelector("#todayDate");
+    // select message display
+    this.messageDisplay = document.querySelector("#displayMessage");
   }
 }

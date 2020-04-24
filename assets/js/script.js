@@ -254,6 +254,7 @@ el.addBookmarkBtn.addEventListener("click", (e) => {
   save();
   el.bookmarkForm.reset();
   display.displayNone(el.bookmarkForm);
+  display.showAlert("A new bookmark was added", "success", 1500);
   renderBookmarks();
 });
 
