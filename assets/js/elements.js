@@ -29,5 +29,7 @@ class Elements {
     this.todayDate = document.querySelector("#todayDate");
     // select message display
     this.messageDisplay = document.querySelector("#displayMessage");
+    // select message border
+    this.messageBorder = document.querySelector("#modalBorder");
   }
 }
