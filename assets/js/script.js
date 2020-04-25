@@ -132,7 +132,7 @@ el.catList.addEventListener("click", (e) => {
     catIndex = index;
     arrayOfTabs.splice(catIndex, 1);
     deleteAudio.play();
-    display.showAlert("A new category was deleted", "success", 1500);
+    display.showAlert("A category tab was deleted", "success", 1500);
     // save
     save();
 
