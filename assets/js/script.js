@@ -50,7 +50,7 @@ function startUp() {
 const getAndShowDate = () => {
   let date = new Date();
   el.todayDate.textContent = date.toDateString();
-  console.log(date.getDay());
+  // check for trash day
   if (date.getDay() === 6) {
     trashH1.textContent = "Today is Trash Day!!!";
   }
