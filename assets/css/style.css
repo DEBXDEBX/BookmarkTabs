@@ -189,6 +189,9 @@ h3 {
 .cat:hover {
   cursor: pointer;
 }
+#trash {
+  text-align: center;
+}
 /* *********************************** */
 /* google search  */
 #googleSearchContainer {

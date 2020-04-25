@@ -13,6 +13,8 @@ let deleteAudio = document.querySelector("#deleteAudio");
 let tabAudio = document.querySelector("#tabAudio");
 let warning1Audio = document.querySelector("#warning1Audio");
 let warning2Audio = document.querySelector("#warning2Audio");
+// Trash day insert
+let trashH1 = document.querySelector("#trash");
 // time insert
 let timeH1 = document.querySelector("#todayTime");
 // create elements object
@@ -46,7 +48,15 @@ function startUp() {
 // Helper functions
 //*************************************************** */
 const getAndShowDate = () => {
-  el.todayDate.textContent = new Date().toDateString();
+  let date = new Date();
+  el.todayDate.textContent = date.toDateString();
+  console.log(date.getDay());
+  if (date.getDay() === 6) {
+    trashH1.textContent = "Today is Trash Day!!!";
+  }
+  if (date.getDay() === 5) {
+    trashH1.textContent = "Tomorrow is Trash Day!!!";
+  }
 };
 const HomeList = () => {
   // grab all the catorgory's
