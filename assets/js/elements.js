@@ -44,5 +44,7 @@ class Elements {
     this.inTextReminder = document.querySelector("#inTextReminder");
     // Div
     this.remindersDiv = document.querySelector("#remindersDiv");
+    // Form Reminder
+    this.formReminder = document.querySelector("#formReminder");
   }
 }

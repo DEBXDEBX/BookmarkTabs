@@ -445,6 +445,8 @@ el.inBtnSaveReminder.addEventListener("click", (e) => {
   let reminder = new Reminder(tempDay, tempReminder);
   // push reminder
   arrayReminder.push(reminder);
+  addTabAudio.play();
+  this.formReminder.reset();
   // save to  local storage
   reminderStorage.saveArrayToLS(arrayReminder);
   // redisplay
@@ -456,7 +458,9 @@ el.inBtnSaveReminder.addEventListener("click", (e) => {
 });
 el.inBtnCancelReminder.addEventListener("click", (e) => {
   e.preventDefault();
+  clickAudio.play();
   display.displayNone(this.remindersDiv);
+  this.formReminder.reset();
 });
 
 el.outUlEditReminder.addEventListener("click", (e) => {
@@ -464,6 +468,7 @@ el.outUlEditReminder.addEventListener("click", (e) => {
     let deleteIndex = e.target.parentElement.dataset.index;
 
     arrayReminder.splice(deleteIndex, 1);
+    deleteAudio.play();
     // save to  local storage
     reminderStorage.saveArrayToLS(arrayReminder);
     // redisplay
@@ -476,8 +481,11 @@ el.outUlEditReminder.addEventListener("click", (e) => {
 });
 
 el.pieBtn.addEventListener("click", (e) => {
-  console.log(e);
   if (e.ctrlKey && e.shiftKey) {
+    clickAudio.play();
     display.displayBlock(this.remindersDiv);
   }
+});
+el.inSelectDayCode.addEventListener("change", (e) => {
+  tabAudio.play();
 });
