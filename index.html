@@ -164,14 +164,19 @@
       </form>
     </section>
 
-    <nav>
-      <ul id="bookmarkList"></ul>
-    </nav>
+<nav>
+
+  <ul id="bookmarkList"></ul>
+</nav>
+   
 
     <!-- on or off line  -->
     <div id="status"></div>
-    <!-- today Date  -->
-    <h1 id="trash"></h1>
+    <!-- today Date 
+    <h1 id="trash"></h1> -->
+  
+      <ul id="outUlShowReminder"></ul>
+ 
     <div>
       <h2 id="todayDate"></h2>
       <h2 id="todayTime"></h2>
@@ -207,7 +212,55 @@
       </div>
     </div>
     <!-- end of modal  -->
+    <!-- ***************************************** reminder code ***************************************** -->
+  
 
+    <div id="remindersDiv">
+    
+        <ul id="outUlEditReminder"></ul>
+    
+
+      <form id="formReminder">
+        <div class="form-group">
+          <select id="inSelectDayCode" name="cars">
+            <option value="0">Sunday</option>
+            <option value="1">Monday</option>
+            <option value="2">Tuesday</option>
+            <option value="3">Wednesday</option>
+            <option value="4">Thursday</option>
+            <option value="5">Fridayday</option>
+            <option value="6">Saturday</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input
+            id="inTextReminder"
+            type="text"
+            autofocus
+            class="form-control"
+            placeholder="Reminder"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            id="inBtnSaveReminder"
+            class="btn btn-primary form-control"
+            type="submit"
+            value="Save Reminder"
+          />
+        </div>
+        <div class="form-group">
+          <button
+            id="inBtnReminderCancel"
+            class="btn btn-warning form-control"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+    <h1 id="pie">&#8719;</h1>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -232,6 +285,8 @@
     <script type="text/javascript" src="assets/js/storageLS.js"></script>
     <script type="text/javascript" src="assets/js/tab.js"></script>
     <script type="text/javascript" src="assets/js/elements.js"></script>
+    <script type="text/javascript" src="assets/js/Reminder.js"></script>
+    <script type="text/javascript" src="assets/js/reminderStorage.js"></script>
     <script type="text/javascript" src="assets/js/script.js"></script>
   </body>
 </html>

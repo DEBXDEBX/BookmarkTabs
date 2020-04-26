@@ -163,4 +163,30 @@ class Display {
   offlineMessage() {
     this.elements.onLineStatus.innerHTML = `<H1 class="offline">Offline</H1>`;
   }
+
+  //Method
+  renderEditReminders(array) {
+    let html = "";
+
+    array.forEach((element, index) => {
+      html += `<li data-index="${index}" class="editReminders">${element.day} ${element.text}<i
+        title="Delete Reminder"
+        class="delete-reminder trash fas fa-trash-alt"
+      ></i
+    ></li>`;
+    });
+    // paint reminders
+    this.elements.outUlEditReminder.innerHTML = html;
+  }
+
+  //Method
+  renderShowReminders(array) {
+    let html = "";
+
+    array.forEach((element, index) => {
+      html += `<li data-index="${index}" class="showReminders">${element.day} ${element.text}</li>`;
+    });
+    // paint reminders
+    this.elements.outUlShowReminder.innerHTML = html;
+  }
 } // End class

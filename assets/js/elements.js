@@ -31,5 +31,18 @@ class Elements {
     this.messageDisplay = document.querySelector("#displayMessage");
     // select message border
     this.messageBorder = document.querySelector("#modalBorder");
+
+    // select the lists
+    this.outUlShowReminder = document.querySelector("#outUlShowReminder");
+    this.outUlEditReminder = document.querySelector("#outUlEditReminder");
+    // select btn
+    this.inBtnSaveReminder = document.querySelector("#inBtnSaveReminder");
+    this.inBtnCancelReminder = document.querySelector("#inBtnReminderCancel");
+    this.pieBtn = document.querySelector("#pie");
+    // select input
+    this.inSelectDayCode = document.querySelector("#inSelectDayCode");
+    this.inTextReminder = document.querySelector("#inTextReminder");
+    // Div
+    this.remindersDiv = document.querySelector("#remindersDiv");
   }
 }

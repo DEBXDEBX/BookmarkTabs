@@ -255,3 +255,33 @@ input[type="text"]:hover {
   text-align: center;
   color: #e52674;
 }
+/* // reminders code below  */
+#pie {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.showReminders {
+  color: var(--primary-color);
+  text-align: center;
+}
+.editReminders {
+  color: #e52674;
+  text-align: center;
+}
+.delete-reminder {
+  color: red;
+  margin-left: 20px;
+}
+#remindersDiv {
+  display: none;
+}
+#formReminder {
+  width: 80%;
+  margin: 0 auto;
+}
+#inSelectDayCode {
+  color: blueviolet;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+}

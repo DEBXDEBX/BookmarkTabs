@@ -13,8 +13,8 @@ let deleteAudio = document.querySelector("#deleteAudio");
 let tabAudio = document.querySelector("#tabAudio");
 let warning1Audio = document.querySelector("#warning1Audio");
 let warning2Audio = document.querySelector("#warning2Audio");
-// Trash day insert
-let trashH1 = document.querySelector("#trash");
+// // Trash day insert
+// let trashH1 = document.querySelector("#trash");
 // time insert
 let timeH1 = document.querySelector("#todayTime");
 // create elements object
@@ -22,7 +22,13 @@ const el = new Elements();
 // Pass elements to display
 const display = new Display(el, $);
 // declair date
-
+//*********************************** */
+// create storage
+const reminderStorage = new ReminderStorage();
+// main array
+let arrayReminder;
+let todaysDayCode = new Date().getDay();
+//************************************** */
 //This enables JQuery ToolTips
 $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
@@ -30,6 +36,7 @@ $(document).ready(function () {
 //The start of program exicution.
 window.onload = function () {
   startUp();
+  reminderSartUP();
 };
 //Start Up
 function startUp() {
@@ -42,8 +49,20 @@ function startUp() {
   getAndShowDate();
   // call once so you can see time on load of page
   displayTime();
+  reminderSartUP();
 }
+function reminderSartUP() {
+  // grad array from file an set to arrayReminder
+  arrayReminder = reminderStorage.getArrayFromLS();
+  // send to display
+  display.renderEditReminders(arrayReminder);
+  // check list for today code
 
+  let showArray = arrayReminder.filter((item) => {
+    return item.dayCode === todaysDayCode;
+  });
+  display.renderShowReminders(showArray);
+}
 //*************************************************** */
 // Helper functions
 //*************************************************** */
@@ -413,3 +432,52 @@ function displayTime() {
 // call every 30 seconds
 setInterval(displayTime, 20000);
 // end of code for the time display
+
+//****************************************************************************************** */
+el.inBtnSaveReminder.addEventListener("click", (e) => {
+  e.preventDefault();
+  // get Input
+  let tempDay = inSelectDayCode.value;
+
+  let tempReminder = inTextReminder.value.trim();
+
+  // create reminder
+  let reminder = new Reminder(tempDay, tempReminder);
+  // push reminder
+  arrayReminder.push(reminder);
+  // save to  local storage
+  reminderStorage.saveArrayToLS(arrayReminder);
+  // redisplay
+  display.renderEditReminders(arrayReminder);
+  let showArray = arrayReminder.filter((item) => {
+    return item.dayCode === todaysDayCode;
+  });
+  display.renderShowReminders(showArray);
+});
+el.inBtnCancelReminder.addEventListener("click", (e) => {
+  e.preventDefault();
+  display.displayNone(this.remindersDiv);
+});
+
+el.outUlEditReminder.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-reminder")) {
+    let deleteIndex = e.target.parentElement.dataset.index;
+
+    arrayReminder.splice(deleteIndex, 1);
+    // save to  local storage
+    reminderStorage.saveArrayToLS(arrayReminder);
+    // redisplay
+    display.renderEditReminders(arrayReminder);
+    let showArray = arrayReminder.filter((item) => {
+      return item.dayCode === todaysDayCode;
+    });
+    display.renderShowReminders(showArray);
+  }
+});
+
+el.pieBtn.addEventListener("click", (e) => {
+  console.log(e);
+  if (e.ctrlKey && e.shiftKey) {
+    display.displayBlock(this.remindersDiv);
+  }
+});
