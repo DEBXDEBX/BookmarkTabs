@@ -184,7 +184,7 @@ class Display {
     let html = "";
 
     array.forEach((element, index) => {
-      html += `<li data-index="${index}" class="showReminders">${element.day} ${element.text}</li>`;
+      html += `<h4 data-index="${index}" class="showReminders">${element.day} ${element.text}</h4>`;
     });
     // paint reminders
     this.elements.outUlShowReminder.innerHTML = html;

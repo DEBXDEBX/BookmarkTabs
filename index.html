@@ -183,17 +183,18 @@
     </div>
 
     <div id="googleSearchContainer">
-      <form id="searchForm" action="">
+      <form id="searchForm" class="">
         <input
           autocomplete="off"
           type="text"
           name="googleSearch"
           id="googleSearchInput"
+          class="form-control mb-2 mr-sm-2"
         />
-        <button class="searchBtn" id="googleBtn">Search Google</button>
-        <button class="searchBtn" id="mdnBtn">MDN</button>
-        <button class="searchBtn" id="youTubeBtn">You Tube</button>
-        <button class="searchBtn" id="stackOverflowBtn">
+        <button class="btn btn-primary my-2 b-2" id="googleBtn">Search Google</button>
+        <button class="btn btn-primary my-2 b-2" id="mdnBtn">MDN</button>
+        <button class="btn btn-primary my-2 b-2" id="youTubeBtn">You Tube</button>
+        <button class="btn btn-primary my-2 b-2" id="stackOverflowBtn">
           Stack Overflow
         </button>
       </form>
@@ -221,7 +222,7 @@
     
 
       <form id="formReminder">
-        <div class="select">
+        <div class="form-group">
           <select id="inSelectDayCode" name="cars">
             <option value="0">Sunday</option>
             <option value="1">Monday</option>
@@ -237,6 +238,7 @@
             id="inTextReminder"
             type="text"
             autofocus
+            autocomplete="off"
             class="form-control"
             placeholder="Reminder"
           />
