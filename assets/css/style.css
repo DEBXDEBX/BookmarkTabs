@@ -282,3 +282,6 @@ h4 {
 li {
   list-style-type: none;
 }
+.trash:hover {
+  cursor: pointer;
+}

@@ -3,17 +3,16 @@
 let arrayOfTabs = [];
 let catIndex = -243;
 let bookmarkIndex = -243;
-// reminder array
-let arrayReminder;
+// weekly reminder array
+let arrayWeeklyReminder;
 // date reminder array
 let arrayDateReminder;
-// more vars
 let today = new Date();
 let todaysDayCode = today.getDay();
 let currentYear = today.getFullYear();
 let currentMonth = 1 + today.getMonth();
-const REMINDER_STORAGE_KEY = "reminderApril262020DEBX";
 const BOOKMARK_STORAGE_KEY = "fileBookmark10062019DEBX";
+const REMINDER_STORAGE_KEY = "reminderApril262020DEBX";
 const DATE_REMINDER_STORAGE_KEY = "dateReminderApril272020debx";
 //Select audio files
 let addBookmarkAudio = document.querySelector("#addBookmarkAudio");
@@ -25,18 +24,16 @@ let deleteAudio = document.querySelector("#deleteAudio");
 let tabAudio = document.querySelector("#tabAudio");
 let warning1Audio = document.querySelector("#warning1Audio");
 let warning2Audio = document.querySelector("#warning2Audio");
-
 // time insert
 let timeH1 = document.querySelector("#todayTime");
 // create elements object
 const el = new Elements();
 // Pass elements to display
 const display = new Display(el, $);
-// declair date
 //*********************************** */
 // create storage
-const reminderStorage = new ArrayStorageLS(REMINDER_STORAGE_KEY);
 const bookmarkStorage = new ArrayStorageLS(BOOKMARK_STORAGE_KEY);
+const reminderStorage = new ArrayStorageLS(REMINDER_STORAGE_KEY);
 const dateReminderStorage = new ArrayStorageLS(DATE_REMINDER_STORAGE_KEY);
 //************************************** */
 //This enables JQuery ToolTips
@@ -49,7 +46,6 @@ window.onload = function () {
 };
 //Start Up
 function startUp() {
-  arrayOfTabs = bookmarkStorage.getArrayFromLS();
   renderCategorys();
   // If you have Home catogory display it's bookmarks
   HomeList();
@@ -57,27 +53,27 @@ function startUp() {
   getAndShowDate();
   // call once so you can see time on load of page
   displayTime();
-  reminderSartUP();
+  weeklyReminderStartUP();
   reminderDateStartUP();
 }
-function reminderSartUP() {
-  // grad array from file an set to arrayReminder
-  arrayReminder = reminderStorage.getArrayFromLS();
+function weeklyReminderStartUP() {
+  // grad array from file an set to arrayWeeklyReminder
+  arrayWeeklyReminder = reminderStorage.getArrayFromLS();
   // send to display
-  display.renderEditReminders(arrayReminder);
+  display.renderEditReminders(arrayWeeklyReminder);
   // check list for today code
-  let showArray = arrayReminder.filter((item) => {
+  let showArray = arrayWeeklyReminder.filter((item) => {
     return item.dayCode === todaysDayCode;
   });
   display.renderShowReminders(showArray);
 }
 
 function reminderDateStartUP() {
-  // grad array from file an set to arrayReminder
+  // grad array from file an set to arrayWeeklyReminder
   arrayDateReminder = dateReminderStorage.getArrayFromLS();
   // send to display
   display.renderEditDateReminders(arrayDateReminder);
-  // check list for today code
+  // check list for year and month | show if year and month are current
   let showArray = arrayDateReminder.filter((item) => {
     return currentYear === item.year && currentMonth === item.month;
   });
@@ -90,12 +86,6 @@ const getAndShowDate = () => {
   let date = new Date();
   el.todayDate.textContent = date.toDateString();
   // check for trash day
-  if (date.getDay() === 6) {
-    trashH1.textContent = "Today is Trash Day!!!";
-  }
-  if (date.getDay() === 5) {
-    trashH1.textContent = "Tomorrow is Trash Day!!!";
-  }
 };
 const HomeList = () => {
   // grab all the catorgory's
@@ -147,12 +137,11 @@ function sortArrayByName(array) {
 } // End sortArrayByName(array)
 
 function renderCategorys() {
-  // tabAudio.play();
+  arrayOfTabs = bookmarkStorage.getArrayFromLS();
   display.paintCategorys(mapNamesOut(arrayOfTabs));
 }
 
 function renderBookmarks() {
-  // tabAudio.play();
   display.paintBookmarks(arrayOfTabs[catIndex].arrayOfBookmarks);
 }
 // when You click on the +/icon in the cat  heading
@@ -451,70 +440,29 @@ function displayTime() {
 setInterval(displayTime, 20000);
 // end of code for the time display
 
-//************************************** reminder code **************************************************** */
-el.inBtnSaveReminder.addEventListener("click", (e) => {
-  e.preventDefault();
-  // get Input
-  let tempDay = inSelectDayCode.value;
-
-  let tempReminder = inTextReminder.value.trim();
-
-  // create reminder
-  let reminder = new Reminder(tempDay, tempReminder);
-  // push reminder
-  arrayReminder.push(reminder);
-  addTabAudio.play();
-  this.formReminder.reset();
-  // save to  local storage
-  reminderStorage.saveArrayToLS(arrayReminder);
-  // redisplay
-  display.renderEditReminders(arrayReminder);
-  let showArray = arrayReminder.filter((item) => {
-    return item.dayCode === todaysDayCode;
-  });
-  display.renderShowReminders(showArray);
-});
-el.inBtnCancelReminder.addEventListener("click", (e) => {
-  e.preventDefault();
-  clickAudio.play();
-  display.displayNone(this.remindersDiv);
-  this.formReminder.reset();
-});
-
-el.outUlEditReminder.addEventListener("click", (e) => {
-  if (e.target.classList.contains("delete-reminder")) {
-    let deleteIndex = e.target.parentElement.dataset.index;
-
-    arrayReminder.splice(deleteIndex, 1);
-    deleteAudio.play();
-    // save to  local storage
-    reminderStorage.saveArrayToLS(arrayReminder);
-    // redisplay
-    display.renderEditReminders(arrayReminder);
-    let showArray = arrayReminder.filter((item) => {
-      return item.dayCode === todaysDayCode;
-    });
-    display.renderShowReminders(showArray);
-  }
-});
-
-el.pieBtn.addEventListener("click", (e) => {
-  if (e.ctrlKey && e.shiftKey) {
-    clickAudio.play();
-    display.displayBlock(this.remindersDiv);
-  }
-});
-el.inSelectDayCode.addEventListener("change", (e) => {
-  tabAudio.play();
-});
-
 // ******************************* date reminder code **************
 el.inBtnSaveDateReminder.addEventListener("click", (e) => {
   e.preventDefault();
-  let text = this.inTextDateReminder.value;
   let dateToSet = this.inDateDateReminder.value;
+  if (!dateToSet) {
+    warning1Audio.play();
+    display.showAlert("Please choose a date!", "error");
+    return;
+  }
+
+  let text = this.inTextDateReminder.value.trim();
+  if (!text) {
+    warning1Audio.play();
+    display.showAlert(
+      "Please enter a message for your date reminder!",
+      "error"
+    );
+    return;
+  }
+
   let dateReminder = new DateReminder(dateToSet, text);
   arrayDateReminder.push(dateReminder);
+  display.showAlert("A date reminder was saved", "success", 1500);
   addTabAudio.play();
   this.formDateReminder.reset();
   dateReminderStorage.saveArrayToLS(arrayDateReminder);
@@ -534,9 +482,18 @@ el.inBtnCancelDateReminder.addEventListener("click", (e) => {
 
 el.outULEditDateReminder.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-date-reminder")) {
+    if (!e.ctrlKey) {
+      warning1Audio.play();
+      display.showAlert(
+        "Please hold down the control key and click the trash can to make a deletion!",
+        "error"
+      );
+      return;
+    }
     let deleteIndex = e.target.parentElement.dataset.index;
 
     arrayDateReminder.splice(deleteIndex, 1);
+    display.showAlert("A date reminder was deleted", "success", 1500);
     deleteAudio.play();
     // save to  local storage
     dateReminderStorage.saveArrayToLS(arrayDateReminder);
@@ -550,5 +507,81 @@ el.outULEditDateReminder.addEventListener("click", (e) => {
 });
 
 el.inDateDateReminder.addEventListener("change", (e) => {
+  tabAudio.play();
+});
+// *********************************** End Date reminder code ************
+
+//************************************** Weekly reminder code **************************************************** */
+el.inBtnSaveReminder.addEventListener("click", (e) => {
+  e.preventDefault();
+  // get Input
+  let tempDay = inSelectDayCode.value;
+
+  let tempReminder = inTextReminder.value.trim();
+  if (!tempReminder) {
+    warning1Audio.play();
+    display.showAlert(
+      "Please enter a message for your weekly reminder!",
+      "error"
+    );
+    return;
+  }
+  // create reminder
+  let reminder = new Reminder(tempDay, tempReminder);
+  // push reminder
+  arrayWeeklyReminder.push(reminder);
+  addTabAudio.play();
+  display.showAlert("A weekly reminder was saved", "success", 1500);
+  this.formReminder.reset();
+  // save to  local storage
+  reminderStorage.saveArrayToLS(arrayWeeklyReminder);
+  // redisplay
+  display.renderEditReminders(arrayWeeklyReminder);
+  let showArray = arrayWeeklyReminder.filter((item) => {
+    return item.dayCode === todaysDayCode;
+  });
+  display.renderShowReminders(showArray);
+});
+el.inBtnCancelReminder.addEventListener("click", (e) => {
+  e.preventDefault();
+  clickAudio.play();
+  display.displayNone(this.remindersDiv);
+  this.formReminder.reset();
+});
+
+el.outUlEditReminder.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-reminder")) {
+    if (!e.ctrlKey) {
+      warning1Audio.play();
+      display.showAlert(
+        "Please hold down the control key and click the trash can to make a deletion!",
+        "error"
+      );
+      return;
+    }
+
+    let deleteIndex = e.target.parentElement.dataset.index;
+    display.showAlert("A weekly reminder was deleted", "success", 1500);
+    arrayWeeklyReminder.splice(deleteIndex, 1);
+    deleteAudio.play();
+    // save to  local storage
+    reminderStorage.saveArrayToLS(arrayWeeklyReminder);
+    // redisplay
+    display.renderEditReminders(arrayWeeklyReminder);
+    let showArray = arrayWeeklyReminder.filter((item) => {
+      return item.dayCode === todaysDayCode;
+      z;
+    });
+    display.renderShowReminders(showArray);
+  }
+});
+
+el.pieBtn.addEventListener("click", (e) => {
+  if (e.ctrlKey && e.shiftKey) {
+    clickAudio.play();
+    display.displayBlock(this.remindersDiv);
+  }
+});
+el.inSelectDayCode.addEventListener("change", (e) => {
   tabAudio.play();
 });

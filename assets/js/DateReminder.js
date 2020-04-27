@@ -8,6 +8,4 @@ class DateReminder {
     this.stringDate = `${this.month}-${this.day}-${this.year}`;
     this.text = text;
   }
-  //Method
-  getDayFromDayCode(dayCode) {}
 } // End Reminder class
