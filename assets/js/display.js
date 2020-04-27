@@ -151,7 +151,7 @@ class Display {
 
   //Method
   onlineMessage() {
-    this.elements.onLineStatus.innerHTML = `<H1 class="online">Online</H1>`;
+    this.elements.onLineStatus.innerHTML = `<h4 class="online">Online</h4>`;
     // Timeout after 4 sec
     let displayTime = 7000;
     setTimeout(function () {
@@ -161,7 +161,7 @@ class Display {
 
   //Method
   offlineMessage() {
-    this.elements.onLineStatus.innerHTML = `<H1 class="offline">Offline</H1>`;
+    this.elements.onLineStatus.innerHTML = `<h4 class="offline">Offline</h4>`;
   }
 
   //Method
@@ -188,5 +188,31 @@ class Display {
     });
     // paint reminders
     this.elements.outUlShowReminder.innerHTML = html;
+  }
+
+  //Method
+  renderEditDateReminders(array) {
+    let html = "";
+
+    array.forEach((element, index) => {
+      html += `<li data-index="${index}" class="editDateReminders">${element.stringDate} ${element.text}<i
+        title="Delete Date Reminder"
+        class="delete-date-reminder trash fas fa-trash-alt"
+      ></i
+    ></li>`;
+    });
+    // paint reminders
+    this.elements.outULEditDateReminder.innerHTML = html;
+  }
+
+  //Method
+  renderShowDateReminders(array) {
+    let html = "";
+
+    array.forEach((element, index) => {
+      html += `<h4 data-index="${index}" class="showDateReminders">${element.stringDate} ${element.text}</h4>`;
+    });
+    // paint reminders
+    this.elements.outULShowDateReminder.innerHTML = html;
   }
 } // End class

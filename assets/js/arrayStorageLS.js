@@ -1,6 +1,6 @@
-class ReminderStorage {
-  constructor() {
-    this.fileName = "reminderApril262020DEBX";
+class ArrayStorageLS {
+  constructor(storageKey) {
+    this.fileName = storageKey;
   } // End constructor
 
   //Method

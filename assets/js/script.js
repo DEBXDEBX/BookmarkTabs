@@ -3,6 +3,18 @@
 let arrayOfTabs = [];
 let catIndex = -243;
 let bookmarkIndex = -243;
+// reminder array
+let arrayReminder;
+// date reminder array
+let arrayDateReminder;
+// more vars
+let today = new Date();
+let todaysDayCode = today.getDay();
+let currentYear = today.getFullYear();
+let currentMonth = 1 + today.getMonth();
+const REMINDER_STORAGE_KEY = "reminderApril262020DEBX";
+const BOOKMARK_STORAGE_KEY = "fileBookmark10062019DEBX";
+const DATE_REMINDER_STORAGE_KEY = "dateReminderApril272020debx";
 //Select audio files
 let addBookmarkAudio = document.querySelector("#addBookmarkAudio");
 let addTabAudio = document.querySelector("#addTabAudio");
@@ -13,8 +25,7 @@ let deleteAudio = document.querySelector("#deleteAudio");
 let tabAudio = document.querySelector("#tabAudio");
 let warning1Audio = document.querySelector("#warning1Audio");
 let warning2Audio = document.querySelector("#warning2Audio");
-// // Trash day insert
-// let trashH1 = document.querySelector("#trash");
+
 // time insert
 let timeH1 = document.querySelector("#todayTime");
 // create elements object
@@ -24,10 +35,9 @@ const display = new Display(el, $);
 // declair date
 //*********************************** */
 // create storage
-const reminderStorage = new ReminderStorage();
-// main array
-let arrayReminder;
-let todaysDayCode = new Date().getDay();
+const reminderStorage = new ArrayStorageLS(REMINDER_STORAGE_KEY);
+const bookmarkStorage = new ArrayStorageLS(BOOKMARK_STORAGE_KEY);
+const dateReminderStorage = new ArrayStorageLS(DATE_REMINDER_STORAGE_KEY);
 //************************************** */
 //This enables JQuery ToolTips
 $(document).ready(function () {
@@ -36,12 +46,10 @@ $(document).ready(function () {
 //The start of program exicution.
 window.onload = function () {
   startUp();
-  reminderSartUP();
 };
 //Start Up
 function startUp() {
-  let storageLs = new StoreageLS();
-  arrayOfTabs = storageLs.getArrayFromFile();
+  arrayOfTabs = bookmarkStorage.getArrayFromLS();
   renderCategorys();
   // If you have Home catogory display it's bookmarks
   HomeList();
@@ -50,6 +58,7 @@ function startUp() {
   // call once so you can see time on load of page
   displayTime();
   reminderSartUP();
+  reminderDateStartUP();
 }
 function reminderSartUP() {
   // grad array from file an set to arrayReminder
@@ -57,11 +66,22 @@ function reminderSartUP() {
   // send to display
   display.renderEditReminders(arrayReminder);
   // check list for today code
-
   let showArray = arrayReminder.filter((item) => {
     return item.dayCode === todaysDayCode;
   });
   display.renderShowReminders(showArray);
+}
+
+function reminderDateStartUP() {
+  // grad array from file an set to arrayReminder
+  arrayDateReminder = dateReminderStorage.getArrayFromLS();
+  // send to display
+  display.renderEditDateReminders(arrayDateReminder);
+  // check list for today code
+  let showArray = arrayDateReminder.filter((item) => {
+    return currentYear === item.year && currentMonth === item.month;
+  });
+  display.renderShowDateReminders(showArray);
 }
 //*************************************************** */
 // Helper functions
@@ -99,9 +119,7 @@ const HomeList = () => {
 };
 
 function save() {
-  // save
-  let storageLs = new StoreageLS();
-  storageLs.setArrayToFileName(arrayOfTabs);
+  bookmarkStorage.setArrayToLS(arrayOfTabs);
 }
 
 // create a new array with only the items name
@@ -433,7 +451,7 @@ function displayTime() {
 setInterval(displayTime, 20000);
 // end of code for the time display
 
-//****************************************************************************************** */
+//************************************** reminder code **************************************************** */
 el.inBtnSaveReminder.addEventListener("click", (e) => {
   e.preventDefault();
   // get Input
@@ -487,5 +505,50 @@ el.pieBtn.addEventListener("click", (e) => {
   }
 });
 el.inSelectDayCode.addEventListener("change", (e) => {
+  tabAudio.play();
+});
+
+// ******************************* date reminder code **************
+el.inBtnSaveDateReminder.addEventListener("click", (e) => {
+  e.preventDefault();
+  let text = this.inTextDateReminder.value;
+  let dateToSet = this.inDateDateReminder.value;
+  let dateReminder = new DateReminder(dateToSet, text);
+  arrayDateReminder.push(dateReminder);
+  addTabAudio.play();
+  this.formDateReminder.reset();
+  dateReminderStorage.saveArrayToLS(arrayDateReminder);
+  display.renderEditDateReminders(arrayDateReminder);
+  let showArray = arrayDateReminder.filter((item) => {
+    return currentYear === item.year && currentMonth === item.month;
+  });
+  display.renderShowDateReminders(showArray);
+});
+
+el.inBtnCancelDateReminder.addEventListener("click", (e) => {
+  e.preventDefault();
+  clickAudio.play();
+  display.displayNone(this.remindersDiv);
+  this.formDateReminder.reset();
+});
+
+el.outULEditDateReminder.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-date-reminder")) {
+    let deleteIndex = e.target.parentElement.dataset.index;
+
+    arrayDateReminder.splice(deleteIndex, 1);
+    deleteAudio.play();
+    // save to  local storage
+    dateReminderStorage.saveArrayToLS(arrayDateReminder);
+    // redisplay
+    display.renderEditDateReminders(arrayDateReminder);
+    let showArray = arrayDateReminder.filter((item) => {
+      return currentYear === item.year && currentMonth === item.month;
+    });
+    display.renderShowDateReminders(showArray);
+  }
+});
+
+el.inDateDateReminder.addEventListener("change", (e) => {
   tabAudio.play();
 });

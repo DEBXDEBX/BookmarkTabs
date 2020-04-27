@@ -172,11 +172,14 @@
 
     <!-- on or off line  -->
     <div id="status"></div>
-    <!-- today Date 
-    <h1 id="trash"></h1> -->
+  
+  
   
       <ul id="outUlShowReminder"></ul>
- 
+    
+      <ul id="outULShowDateReminder"></ul>
+    
+      
     <div>
       <h2 id="todayDate"></h2>
       <h2 id="todayTime"></h2>
@@ -200,7 +203,9 @@
       </form>
     </div>
 
- 
+
+
+
     <!-- Message Modal -->
     <div id="myMessageModal" class="modal fade" role="dialog">
       <div class="modal-dialog modal-lg">
@@ -213,14 +218,68 @@
       </div>
     </div>
     <!-- end of modal  -->
+
+
     <!-- ***************************************** reminder code ***************************************** -->
   
 
     <div id="remindersDiv">
+
+<!-- ***************************************** date remider code ******************* -->
+<div class="dateReminder">
+<h4>Date Reminders</h4>
+<ul id="outULEditDateReminder"></ul>
+<h4>Date Reminder Form</h4>
+<form id="formDateReminder" action="">
+
+  <div class="form-group">
+    <input
+      id="inDateDateReminder"
+      type="date"
+
+      class="form-control"
     
+    />
+  </div>
+  <div class="form-group">
+    <input
+      id="inTextDateReminder"
+      type="text"
+      autofocus
+      autocomplete="off"
+      class="form-control"
+      placeholder="Reminder"
+    />
+  </div>
+  <div class="form-group">
+    <input
+      id="inBtnSaveDateReminder"
+      class="btn btn-primary form-control"
+      type="submit"
+      value="Save Date Reminder"
+    />
+  </div>
+  <div class="form-group">
+    <button
+      id="inBtnCancelDateReminder"
+      class="btn btn-warning form-control"
+      type="button"
+    >
+      Cancel
+    </button>
+  </div>
+</form>
+</div>
+
+<!-- **************************************date reminder code end************************************* -->
+
+
+<div class="weeklyReminder">
+              <h4>Weekly Reminders</h4>
         <ul id="outUlEditReminder"></ul>
     
 
+        <h4>Weekly Reminder Form</h4>
       <form id="formReminder">
         <div class="form-group">
           <select id="inSelectDayCode" name="cars">
@@ -253,7 +312,7 @@
         </div>
         <div class="form-group">
           <button
-            id="inBtnReminderCancel"
+            id="inBtnCancelReminder"
             class="btn btn-warning form-control"
             type="button"
           >
@@ -262,6 +321,8 @@
         </div>
       </form>
     </div>
+  </div>
+
     <h5 id="pie">&#8719;</h5>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -284,11 +345,11 @@
     <!-- My JavaScript File -->
     <script type="text/javascript" src="assets/js/display.js"></script>
     <script type="text/javascript" src="assets/js/bookmark.js"></script>
-    <script type="text/javascript" src="assets/js/storageLS.js"></script>
+    <script type="text/javascript" src="assets/js/DateReminder.js"></script>
     <script type="text/javascript" src="assets/js/tab.js"></script>
     <script type="text/javascript" src="assets/js/elements.js"></script>
     <script type="text/javascript" src="assets/js/Reminder.js"></script>
-    <script type="text/javascript" src="assets/js/reminderStorage.js"></script>
+    <script type="text/javascript" src="assets/js/arrayStorageLS.js"></script>
     <script type="text/javascript" src="assets/js/script.js"></script>
   </body>
 </html>

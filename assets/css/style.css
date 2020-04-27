@@ -246,3 +246,39 @@ h3 {
   display: flex;
   justify-content: center;
 } */
+/* ***************************Date reminder **************** */
+#formDateReminder {
+  max-width: 500px;
+  width: 80%;
+  margin: 0 auto;
+}
+.editDateReminders {
+  color: #e52674;
+  text-align: center;
+}
+.showDateReminders {
+  color: var(--primary-color);
+  text-align: center;
+}
+.delete-date-reminder {
+  color: red;
+  margin-left: 20px;
+}
+.delete-date-reminder:hover {
+  color: rgb(134, 38, 38);
+}
+h4 {
+  color: var(--primary-color);
+  text-align: center;
+}
+.weeklyReminder,
+.dateReminder {
+  background-color: #4e5357;
+  width: 500px;
+  margin: 50px auto;
+  padding: 33px;
+  border-radius: 33px;
+}
+li {
+  list-style-type: none;
+}
