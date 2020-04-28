@@ -216,23 +216,22 @@ h3 {
   bottom: 0px;
   right: 5px;
 }
-.showReminders {
-  color: var(--primary-color);
-  text-align: center;
-}
-.editReminders {
+.editReminders,
+.editDateReminders {
   color: #e52674;
   text-align: center;
 }
-.delete-reminder {
+.delete-reminder,
+.delete-date-reminder {
   color: red;
   margin-left: 20px;
 }
-.delete-reminder:hover {
+.delete-reminder:hover,
+.delete-date-reminder:hover {
   color: rgb(134, 38, 38);
 }
-
-#formReminder {
+#formReminder,
+#formDateReminder {
   max-width: 500px;
   width: 80%;
   margin: 0 auto;
@@ -241,35 +240,6 @@ h3 {
   color: blueviolet;
   width: 100%;
   padding: 0.375rem 0.75rem;
-}
-/* .select {
-  display: flex;
-  justify-content: center;
-} */
-/* ***************************Date reminder **************** */
-#formDateReminder {
-  max-width: 500px;
-  width: 80%;
-  margin: 0 auto;
-}
-.editDateReminders {
-  color: #e52674;
-  text-align: center;
-}
-.showDateReminders {
-  color: var(--primary-color);
-  text-align: center;
-}
-.delete-date-reminder {
-  color: red;
-  margin-left: 20px;
-}
-.delete-date-reminder:hover {
-  color: rgb(134, 38, 38);
-}
-h4 {
-  color: var(--primary-color);
-  text-align: center;
 }
 .weeklyReminder,
 .dateReminder {
@@ -284,4 +254,8 @@ li {
 }
 .trash:hover {
   cursor: pointer;
+}
+h4 {
+  color: var(--primary-color);
+  text-align: center;
 }

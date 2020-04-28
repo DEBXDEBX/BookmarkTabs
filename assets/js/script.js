@@ -92,8 +92,6 @@ const filterDateArray = (arrayDateReminder) => {
     });
     return [...showArray, ...nextMonthArray];
   }
-
-  console.log(currentMonth);
   if (currentMonth === 12) {
     let nextJanuaryArray = arrayDateReminder.filter((item) => {
       return currentYear + 1 === item.year && 1 === item.month;
