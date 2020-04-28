@@ -53,35 +53,50 @@ function startUp() {
   getAndShowDate();
   // call once so you can see time on load of page
   displayTime();
-  weeklyReminderStartUP();
-  reminderDateStartUP();
+  weeklyReminderStartUp();
+  reminderDateStartUp();
 }
-function weeklyReminderStartUP() {
+function weeklyReminderStartUp() {
   // grad array from file an set to arrayWeeklyReminder
   arrayWeeklyReminder = reminderStorage.getArrayFromLS();
   // send to display
   display.renderEditReminders(arrayWeeklyReminder);
-  // check list for today code
-  let showArray = arrayWeeklyReminder.filter((item) => {
-    return item.dayCode === todaysDayCode;
-  });
-  display.renderShowReminders(showArray);
+
+  display.renderShowReminders(filterWeeklyArray(arrayWeeklyReminder));
 }
 
-function reminderDateStartUP() {
+function reminderDateStartUp() {
   // grad array from file an set to arrayWeeklyReminder
   arrayDateReminder = dateReminderStorage.getArrayFromLS();
   // send to display
   display.renderEditDateReminders(arrayDateReminder);
   // check list for year and month | show if year and month are current
-  let showArray = arrayDateReminder.filter((item) => {
-    return currentYear === item.year && currentMonth === item.month;
-  });
-  display.renderShowDateReminders(showArray);
+  let array = filterDateArray(arrayDateReminder);
+  console.log(array);
+  display.renderShowDateReminders(filterDateArray(arrayDateReminder));
 }
 //*************************************************** */
 // Helper functions
 //*************************************************** */
+const filterWeeklyArray = (arrayWeeklyReminder) => {
+  return arrayWeeklyReminder.filter((item) => {
+    return item.dayCode === todaysDayCode;
+  });
+  return;
+};
+const filterDateArray = (arrayDateReminder) => {
+  let showArray = arrayDateReminder.filter((item) => {
+    return currentYear === item.year && currentMonth === item.month;
+  });
+  console.log(currentMonth);
+  if (currentMonth === 12) {
+    let nextJanuaryArray = arrayDateReminder.filter((item) => {
+      return currentYear + 1 === item.year && 1 === item.month;
+    });
+    return [...showArray, ...nextJanuaryArray];
+  }
+  return showArray;
+};
 const getAndShowDate = () => {
   let date = new Date();
   el.todayDate.textContent = date.toDateString();
@@ -109,7 +124,7 @@ const HomeList = () => {
 };
 
 function save() {
-  bookmarkStorage.setArrayToLS(arrayOfTabs);
+  bookmarkStorage.saveArrayToLS(arrayOfTabs);
 }
 
 // create a new array with only the items name
@@ -467,10 +482,8 @@ el.inBtnSaveDateReminder.addEventListener("click", (e) => {
   this.formDateReminder.reset();
   dateReminderStorage.saveArrayToLS(arrayDateReminder);
   display.renderEditDateReminders(arrayDateReminder);
-  let showArray = arrayDateReminder.filter((item) => {
-    return currentYear === item.year && currentMonth === item.month;
-  });
-  display.renderShowDateReminders(showArray);
+
+  display.renderShowDateReminders(filterDateArray(arrayDateReminder));
 });
 
 el.inBtnCancelDateReminder.addEventListener("click", (e) => {
@@ -499,10 +512,7 @@ el.outULEditDateReminder.addEventListener("click", (e) => {
     dateReminderStorage.saveArrayToLS(arrayDateReminder);
     // redisplay
     display.renderEditDateReminders(arrayDateReminder);
-    let showArray = arrayDateReminder.filter((item) => {
-      return currentYear === item.year && currentMonth === item.month;
-    });
-    display.renderShowDateReminders(showArray);
+    display.renderShowDateReminders(filterDateArray(arrayDateReminder));
   }
 });
 
@@ -537,10 +547,8 @@ el.inBtnSaveReminder.addEventListener("click", (e) => {
   reminderStorage.saveArrayToLS(arrayWeeklyReminder);
   // redisplay
   display.renderEditReminders(arrayWeeklyReminder);
-  let showArray = arrayWeeklyReminder.filter((item) => {
-    return item.dayCode === todaysDayCode;
-  });
-  display.renderShowReminders(showArray);
+
+  display.renderShowReminders(filterDateArray(arrayWeeklyReminder));
 });
 el.inBtnCancelReminder.addEventListener("click", (e) => {
   e.preventDefault();
@@ -568,11 +576,8 @@ el.outUlEditReminder.addEventListener("click", (e) => {
     reminderStorage.saveArrayToLS(arrayWeeklyReminder);
     // redisplay
     display.renderEditReminders(arrayWeeklyReminder);
-    let showArray = arrayWeeklyReminder.filter((item) => {
-      return item.dayCode === todaysDayCode;
-      z;
-    });
-    display.renderShowReminders(showArray);
+
+    display.renderShowReminders(filterWeeklyArray(arrayWeeklyReminder));
   }
 });
 
