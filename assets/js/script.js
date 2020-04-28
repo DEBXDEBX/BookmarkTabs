@@ -71,8 +71,6 @@ function reminderDateStartUp() {
   // send to display
   display.renderEditDateReminders(arrayDateReminder);
   // check list for year and month | show if year and month are current
-  let array = filterDateArray(arrayDateReminder);
-  console.log(array);
   display.renderShowDateReminders(filterDateArray(arrayDateReminder));
 }
 //*************************************************** */
@@ -88,6 +86,13 @@ const filterDateArray = (arrayDateReminder) => {
   let showArray = arrayDateReminder.filter((item) => {
     return currentYear === item.year && currentMonth === item.month;
   });
+  if (currentMonth !== 12) {
+    let nextMonthArray = arrayDateReminder.filter((item) => {
+      return currentYear === item.year && currentMonth + 1 === item.month;
+    });
+    return [...showArray, ...nextMonthArray];
+  }
+
   console.log(currentMonth);
   if (currentMonth === 12) {
     let nextJanuaryArray = arrayDateReminder.filter((item) => {
@@ -95,7 +100,6 @@ const filterDateArray = (arrayDateReminder) => {
     });
     return [...showArray, ...nextJanuaryArray];
   }
-  return showArray;
 };
 const getAndShowDate = () => {
   let date = new Date();
@@ -547,8 +551,7 @@ el.inBtnSaveReminder.addEventListener("click", (e) => {
   reminderStorage.saveArrayToLS(arrayWeeklyReminder);
   // redisplay
   display.renderEditReminders(arrayWeeklyReminder);
-
-  display.renderShowReminders(filterDateArray(arrayWeeklyReminder));
+  display.renderShowReminders(filterWeeklyArray(arrayWeeklyReminder));
 });
 el.inBtnCancelReminder.addEventListener("click", (e) => {
   e.preventDefault();
@@ -576,7 +579,6 @@ el.outUlEditReminder.addEventListener("click", (e) => {
     reminderStorage.saveArrayToLS(arrayWeeklyReminder);
     // redisplay
     display.renderEditReminders(arrayWeeklyReminder);
-
     display.renderShowReminders(filterWeeklyArray(arrayWeeklyReminder));
   }
 });
