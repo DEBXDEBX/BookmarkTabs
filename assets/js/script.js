@@ -1,6 +1,6 @@
 "use strict";
 //Global variable's
-let arrayOfTabs = [];
+let arrayOfTabs;
 let catIndex = -243;
 let bookmarkIndex = -243;
 // weekly reminder array
@@ -46,15 +46,20 @@ window.onload = function () {
 };
 //Start Up
 function startUp() {
-  renderCategorys();
-  // If you have Home catogory display it's bookmarks
-  HomeList();
+  bookmarkStartUp();
+
   // show the date
   getAndShowDate();
   // call once so you can see time on load of page
   displayTime();
   weeklyReminderStartUp();
   reminderDateStartUp();
+}
+function bookmarkStartUp() {
+  arrayOfTabs = bookmarkStorage.getArrayFromLS();
+  renderCategorys();
+  // If you have Home catogory display it's bookmarks
+  HomeList();
 }
 function weeklyReminderStartUp() {
   // grad array from file an set to arrayWeeklyReminder
@@ -91,8 +96,7 @@ const filterDateArray = (arrayDateReminder) => {
       return currentYear === item.year && currentMonth + 1 === item.month;
     });
     return [...showArray, ...nextMonthArray];
-  }
-  if (currentMonth === 12) {
+  } else {
     let nextJanuaryArray = arrayDateReminder.filter((item) => {
       return currentYear + 1 === item.year && 1 === item.month;
     });
@@ -125,8 +129,14 @@ const HomeList = () => {
   }
 };
 
-function save() {
+function saveBokmarks() {
   bookmarkStorage.saveArrayToLS(arrayOfTabs);
+}
+function saveWeeklyReminders() {
+  reminderStorage.saveArrayToLS(arrayWeeklyReminder);
+}
+function saveDateReimnders() {
+  dateReminderStorage.saveArrayToLS(arrayDateReminder);
 }
 
 // create a new array with only the items name
@@ -154,7 +164,6 @@ function sortArrayByName(array) {
 } // End sortArrayByName(array)
 
 function renderCategorys() {
-  arrayOfTabs = bookmarkStorage.getArrayFromLS();
   display.paintCategorys(mapNamesOut(arrayOfTabs));
 }
 
@@ -187,7 +196,7 @@ el.catList.addEventListener("click", (e) => {
     deleteAudio.play();
     display.showAlert("A category tab was deleted", "success", 1500);
     // save
-    save();
+    saveBokmarks();
 
     if (arrayOfTabs.length === 0) {
       startUp();
@@ -256,7 +265,7 @@ el.addCatBtn.addEventListener("click", (e) => {
     // sort array by name
     sortArrayByName(arrayOfTabs);
     // save
-    save();
+    saveBokmarks();
     // addAudio.play();
     display.showAlert("A new category was added", "success", 1500);
     // hide form
@@ -305,7 +314,7 @@ el.addBookmarkBtn.addEventListener("click", (e) => {
   addBookmarkAudio.play();
 
   // save
-  save();
+  saveBokmarks();
   el.bookmarkForm.reset();
   display.displayNone(el.bookmarkForm);
   display.showAlert("A new bookmark was added", "success", 1500);
@@ -339,7 +348,7 @@ el.bookmarkList.addEventListener("click", (e) => {
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
     btnAudio.play();
     // save
-    save();
+    saveBokmarks();
     renderBookmarks();
     return;
   }
@@ -362,7 +371,7 @@ el.bookmarkList.addEventListener("click", (e) => {
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
     btnAudio.play();
     // save
-    save();
+    saveBokmarks();
     renderBookmarks();
     return;
   }
@@ -382,7 +391,7 @@ el.bookmarkList.addEventListener("click", (e) => {
     arrayOfTabs[catIndex].arrayOfBookmarks.splice(deleteIndex, 1);
     deleteAudio.play();
     // save
-    save();
+    saveBokmarks();
     display.showAlert("A bookmark was deleted", "success", 1500);
     renderBookmarks();
     return;
@@ -546,7 +555,7 @@ el.inBtnSaveReminder.addEventListener("click", (e) => {
   display.showAlert("A weekly reminder was saved", "success", 1500);
   this.formReminder.reset();
   // save to  local storage
-  reminderStorage.saveArrayToLS(arrayWeeklyReminder);
+  saveWeeklyReminders();
   // redisplay
   display.renderEditReminders(arrayWeeklyReminder);
   display.renderShowReminders(filterWeeklyArray(arrayWeeklyReminder));
@@ -574,7 +583,7 @@ el.outUlEditReminder.addEventListener("click", (e) => {
     arrayWeeklyReminder.splice(deleteIndex, 1);
     deleteAudio.play();
     // save to  local storage
-    reminderStorage.saveArrayToLS(arrayWeeklyReminder);
+    saveWeeklyReminders();
     // redisplay
     display.renderEditReminders(arrayWeeklyReminder);
     display.renderShowReminders(filterWeeklyArray(arrayWeeklyReminder));

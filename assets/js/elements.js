@@ -10,6 +10,8 @@ class Elements {
     // select forms
     this.catForm = document.querySelector("#catForm");
     this.bookmarkForm = document.querySelector("#bookmarkForm");
+    // Form Reminder
+    this.formReminder = document.querySelector("#formReminder");
     this.formDateReminder = document.querySelector("#formDateReminder");
     // select btns
     this.addCatBtn = document.querySelector("#catAddBtn");
@@ -60,7 +62,5 @@ class Elements {
 
     // Div
     this.remindersDiv = document.querySelector("#remindersDiv");
-    // Form Reminder
-    this.formReminder = document.querySelector("#formReminder");
   }
 }
