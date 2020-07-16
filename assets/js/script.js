@@ -140,8 +140,15 @@ const filterDateArray = (arrayDateReminder) => {
 };
 const getAndShowDate = () => {
   let date = new Date();
-  el.todayDate.textContent = date.toDateString();
-  // check for trash day
+
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
+  el.todayDate.textContent = date.toLocaleDateString(undefined, options);
 };
 const HomeList = () => {
   // grab all the catorgory's
