@@ -52,7 +52,7 @@ function startUp() {
   // show the date
   getAndShowDate();
   // call once so you can see time on load of page
-  displayTime();
+  // displayTime();
   weeklyReminderStartUp();
   reminderDateStartUp();
 }
@@ -244,19 +244,13 @@ el.catList.addEventListener("click", (e) => {
 
   // event delegation
   if (e.target.classList.contains("cat")) {
-    // set's the current target active
+    let tabList = document.getElementsByClassName("cat");
+    // create an array from an array like object
+    let newArray = Array.from(tabList);
+    for (let i = 0; i < newArray.length; i++) {
+      newArray[i].classList.remove("active");
+    }
     e.target.classList.add("active");
-    //The Next code is to set the current tab color white with the active class
-    var el = document.querySelectorAll(".cat");
-    for (let i = 0; i < el.length; i++) {
-      el[i].onclick = function () {
-        var c = 0;
-        while (c < el.length) {
-          el[c++].className = "cat";
-        }
-        el[i].className = "cat active";
-      };
-    } // End code to set the active class
 
     // get the index from the html
     let index = e.target.dataset.index;
@@ -498,7 +492,7 @@ function displayTime() {
   timeH1.textContent = time;
 }
 // call every 30 seconds
-setInterval(displayTime, 20000);
+// setInterval(displayTime, 20000); THIS NEEDS UNCOMMENT TO WORK
 // end of code for the time display
 
 // ******************************* date reminder code **************
