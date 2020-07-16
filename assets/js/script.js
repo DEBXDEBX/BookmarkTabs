@@ -233,6 +233,9 @@ el.catList.addEventListener("click", (e) => {
 
     let index = e.target.dataset.index;
     index = parseInt(index);
+    if (isNaN(index)) {
+      return;
+    }
     catIndex = index;
     arrayOfTabs.splice(catIndex, 1);
     deleteAudio.play();
