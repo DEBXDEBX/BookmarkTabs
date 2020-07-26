@@ -257,9 +257,10 @@ el.catList.addEventListener("click", (e) => {
     let tabList = document.getElementsByClassName("cat");
     // create an array from an array like object
     let newArray = Array.from(tabList);
-    for (let i = 0; i < newArray.length; i++) {
-      newArray[i].classList.remove("active");
-    }
+    newArray.forEach((item) => {
+      item.classList.remove("active");
+    });
+    // add active class
     e.target.classList.add("active");
 
     // get the index from the html
