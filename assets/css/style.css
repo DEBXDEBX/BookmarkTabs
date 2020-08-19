@@ -120,11 +120,13 @@ h3 > span {
 }
 /* this hides and shows when you hover */
 .spanDiv {
-  display: none;
+  /* display: none; */
+  visibility: hidden;
 }
 .myFlexItem:hover .spanDiv {
   text-align: center;
-  display: block;
+  /* display: block; */
+  visibility: visible;
 }
 span {
   font-weight: bold;
