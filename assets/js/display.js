@@ -83,7 +83,7 @@ class Display {
     // This function creates the div and append's it to the div.
     let newElement = document.createElement("div");
     //add a title with the web address
-    newElement.innerHTML = `<div class='myFlexItem'><h4><a href="${address}" >${name}</a></h4><div class='spanDiv'><span data-index="${index}" title='Move Left' class='moveUp'>&lArr;</span><span title='Delete' data-index="${index}" ><i
+    newElement.innerHTML = `<div class='myFlexItem'><h4 class="pill"><a href="${address}" >${name}</a></h4><div class='spanDiv'><span data-index="${index}" title='Move Left' class='moveUp'>&lArr;</span><span title='Delete' data-index="${index}" ><i
     title="Delete Bookmark"
     class="delete-item fas fa-trash-alt"
   ></i
