@@ -35,6 +35,7 @@ i:hover {
 }
 .active {
   color: white;
+  box-shadow: 3px 2px 4px white;
 }
 nav ul {
   display: flex;
