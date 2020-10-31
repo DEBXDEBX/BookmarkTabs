@@ -58,6 +58,13 @@ function startUp() {
 }
 function bookmarkStartUp() {
   arrayOfTabs = bookmarkStorage.getArrayFromLS();
+  if (arrayOfTabs.length === 0) {
+    const homeTab = new Tab("Home");
+    const amazonBM = new Bookmark("Amazon", "https://www.amazon.com/");
+    const googleBM = new Bookmark("Google", "https://www.google.com/");
+    homeTab.arrayOfBookmarks.push(amazonBM, googleBM);
+    arrayOfTabs.push(homeTab);
+  }
   renderCategorys();
   // If you have Home catogory display it's bookmarks
   HomeList();
