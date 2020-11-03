@@ -16,15 +16,15 @@ const BOOKMARK_STORAGE_KEY = "fileBookmark10062019DEBX";
 const REMINDER_STORAGE_KEY = "reminderApril262020DEBX";
 const DATE_REMINDER_STORAGE_KEY = "dateReminderApril272020debx";
 //Select audio files
-let addBookmarkAudio = document.querySelector("#addBookmarkAudio");
-let addTabAudio = document.querySelector("#addTabAudio");
-let btnAudio = document.querySelector("#btnAudio");
-let cancelAudio = document.querySelector("#cancelAudio");
-let clickAudio = document.querySelector("#clickAudio");
-let deleteAudio = document.querySelector("#deleteAudio");
-let tabAudio = document.querySelector("#tabAudio");
-let warning1Audio = document.querySelector("#warning1Audio");
-let warning2Audio = document.querySelector("#warning2Audio");
+const addBookmarkAudio = document.querySelector("#addBookmarkAudio");
+const addTabAudio = document.querySelector("#addTabAudio");
+const btnAudio = document.querySelector("#btnAudio");
+const cancelAudio = document.querySelector("#cancelAudio");
+const clickAudio = document.querySelector("#clickAudio");
+const deleteAudio = document.querySelector("#deleteAudio");
+const tabAudio = document.querySelector("#tabAudio");
+const warning1Audio = document.querySelector("#warning1Audio");
+const warning2Audio = document.querySelector("#warning2Audio");
 // time insert
 let timeH1 = document.querySelector("#todayTime");
 // create elements object
@@ -199,8 +199,8 @@ function mapNamesOut(array) {
 // Sort an array by it's name
 function sortArrayByName(array) {
   array.sort(function (a, b) {
-    var nameA = a.name.toUpperCase(); // ignore upper and lowercase
-    var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+    const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+    const nameB = b.name.toUpperCase(); // ignore upper and lowercase
     if (nameA < nameB) {
       return -1;
     }
@@ -261,12 +261,10 @@ el.catList.addEventListener("click", (e) => {
 
   // event delegation
   if (e.target.classList.contains("cat")) {
-    let tabList = document.getElementsByClassName("cat");
-    // create an array from an array like object
-    let newArray = Array.from(tabList);
-    newArray.forEach((item) => {
-      item.classList.remove("active");
-    });
+    const element = document.querySelector(".cat.active");
+    if (element) {
+      element.classList.remove("active");
+    }
     // add active class
     e.target.classList.add("active");
 
@@ -284,7 +282,7 @@ el.addCatBtn.addEventListener("click", (e) => {
   // grab the text
   let catName = el.textCat.value.trim();
   // check if text is empty
-  if (catName === "") {
+  if (!catName) {
     warning1Audio.play();
     display.showAlert("Please enter a name for the Categroy!", "error");
     return;

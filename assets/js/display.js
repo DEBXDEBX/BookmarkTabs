@@ -4,6 +4,21 @@ class Display {
     //JQuery
     this.$ = $;
     this.tabColorIndex = 0;
+    this.tabColors = [
+      "#2de11d",
+      "#4848e8",
+      "#e84d4d",
+      "Orange",
+      "Violet",
+      "#820ee8",
+      "#8e7fc7",
+      "#ff008b",
+      "#4dc6e8",
+      "#17abf5",
+      "#4c69bd",
+      "#e251dc",
+      "#bbb70e",
+    ];
   } // End constructor
 
   //Method
@@ -57,7 +72,7 @@ class Display {
 
     this.displayBlock(this.elements.catList);
     // color tabs
-    let tabList = document.getElementsByClassName("cat");
+    const tabList = document.getElementsByClassName("cat");
     this.colorSetOfTabs(tabList);
   }
 
@@ -81,7 +96,7 @@ class Display {
   //Method
   createNewBookMarkDiv(name, address, index) {
     // This function creates the div and append's it to the div.
-    let newElement = document.createElement("div");
+    const newElement = document.createElement("div");
     //add a title with the web address
     newElement.innerHTML = `<div class='myFlexItem'><h4 class="pill"><a href="${address}" >${name}</a></h4><div class='spanDiv'><span data-index="${index}" title='Move Left' class='moveUp'>&lArr;</span><span title='Delete' data-index="${index}" ><i
     title="Delete Bookmark"
@@ -92,33 +107,17 @@ class Display {
     this.elements.bookmarkList.appendChild(newElement);
   }
 
-  colorSetOfTabs(tabList) {
-    let tabColors = [
-      "#2de11d",
-      "#4848e8",
-      "#e84d4d",
-      "Orange",
-      "Violet",
-      "#820ee8",
-      "#8e7fc7",
-      "#ff008b",
-      "#4dc6e8",
-      "#17abf5",
-      "#4c69bd",
-      "#e251dc",
-      "#bbb70e",
-    ];
-    // create an array from an array like object
-    let newArray = Array.from(tabList);
-    for (let i = 0; i < newArray.length; i++) {
-      newArray[i].style.backgroundColor = tabColors[this.tabColorIndex];
-      if (this.tabColorIndex === tabColors.length - 1) {
+  //Method
+  colorSetOfTabs(htmlCollection) {
+    for (const item of htmlCollection) {
+      item.style.backgroundColor = this.tabColors[this.tabColorIndex];
+      if (this.tabColorIndex === this.tabColors.length - 1) {
         this.tabColorIndex = 0;
       } else {
         this.tabColorIndex++;
       }
     }
-  } // End colorSetOfTabs(tabList)
+  } // End colorSetOfTabs(htmlCollection)
 
   // Method
   showAlert(message, className, displayTime = 4000) {
@@ -153,7 +152,7 @@ class Display {
   onlineMessage() {
     this.elements.onLineStatus.innerHTML = `<h4 class="online">Online</h4>`;
     // Timeout after 4 sec
-    let displayTime = 7000;
+    const displayTime = 7000;
     setTimeout(function () {
       document.querySelector(".online").remove();
     }, displayTime);
