@@ -224,13 +224,13 @@ el.addShowFormCat.addEventListener("click", (e) => {
   clickAudio.play();
   display.showCatForm();
   display.displayNone(el.bookmarkList);
-  this.textCat.focus();
+  el.textCat.focus();
 });
 // when You click on the +/icon in the bookmark  heading
 el.addShowFormBookmark.addEventListener("click", (e) => {
   clickAudio.play();
   display.showBookmarkForm();
-  this.textBookmark.focus();
+  el.textBookmark.focus();
 });
 
 el.catList.addEventListener("click", (e) => {
@@ -517,14 +517,14 @@ function displayTime() {
 // ******************************* date reminder code **************
 el.inBtnSaveDateReminder.addEventListener("click", (e) => {
   e.preventDefault();
-  let dateToSet = this.inDateDateReminder.value;
+  let dateToSet = el.inDateDateReminder.value;
   if (!dateToSet) {
     warning1Audio.play();
     display.showAlert("Please choose a date!", "error");
     return;
   }
 
-  let text = this.inTextDateReminder.value.trim();
+  let text = el.inTextDateReminder.value.trim();
   if (!text) {
     warning1Audio.play();
     display.showAlert(
@@ -538,7 +538,7 @@ el.inBtnSaveDateReminder.addEventListener("click", (e) => {
   arrayDateReminder.push(dateReminder);
   display.showAlert("A date reminder was saved", "success", 1500);
   addTabAudio.play();
-  this.formDateReminder.reset();
+  el.formDateReminder.reset();
   dateReminderStorage.saveArrayToLS(arrayDateReminder);
   display.renderEditDateReminders(arrayDateReminder);
 
@@ -548,8 +548,8 @@ el.inBtnSaveDateReminder.addEventListener("click", (e) => {
 el.inBtnCancelDateReminder.addEventListener("click", (e) => {
   e.preventDefault();
   clickAudio.play();
-  display.displayNone(this.remindersDiv);
-  this.formDateReminder.reset();
+  display.displayNone(el.remindersDiv);
+  el.formDateReminder.reset();
 });
 
 el.outULEditDateReminder.addEventListener("click", (e) => {
@@ -601,7 +601,7 @@ el.inBtnSaveReminder.addEventListener("click", (e) => {
   arrayWeeklyReminder.push(reminder);
   addTabAudio.play();
   display.showAlert("A weekly reminder was saved", "success", 1500);
-  this.formReminder.reset();
+  el.formReminder.reset();
   // save to  local storage
   saveWeeklyReminders();
   // redisplay
@@ -611,8 +611,8 @@ el.inBtnSaveReminder.addEventListener("click", (e) => {
 el.inBtnCancelReminder.addEventListener("click", (e) => {
   e.preventDefault();
   clickAudio.play();
-  display.displayNone(this.remindersDiv);
-  this.formReminder.reset();
+  display.displayNone(el.remindersDiv);
+  el.formReminder.reset();
 });
 
 el.outUlEditReminder.addEventListener("click", (e) => {
@@ -666,8 +666,8 @@ el.loadJSONBtn.addEventListener("click", (e) => {
   if (dataArray && dataArray.length > 0) {
     display.displayNone(el.JSONForm);
     arrayOfTabs = dataArray;
-    renderCategorys();
-    saveBokmarks();
+    el.bookmarksTextareaInput.value = "";
+    startUp();
   }
 });
 el.bookmarksClearTextAreaBtn.addEventListener("click", (e) => {
@@ -675,6 +675,7 @@ el.bookmarksClearTextAreaBtn.addEventListener("click", (e) => {
 });
 el.bookmarksTextareaCancelBtn.addEventListener("click", (e) => {
   clickAudio.play();
+  el.bookmarksTextareaInput.value = "";
   display.displayNone(el.JSONForm);
 });
 el.showJSONIcon.addEventListener("click", (e) => {
