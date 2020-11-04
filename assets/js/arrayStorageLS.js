@@ -5,7 +5,7 @@ class ArrayStorageLS {
 
   //Method
   saveArrayToLS(obj) {
-    let myJSON = JSON.stringify(obj);
+    const myJSON = JSON.stringify(obj);
     localStorage.setItem(this.fileName, myJSON);
   } // End saveSettings(obj)
 

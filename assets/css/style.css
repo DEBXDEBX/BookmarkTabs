@@ -291,3 +291,15 @@ h4 {
   color: var(--primary-color);
   text-align: center;
 }
+
+#JSONForm {
+  display: none;
+  max-width: 80%;
+  margin: 0 auto;
+}
+#showJSONIcon {
+  position: fixed;
+  bottom: 0px;
+  left: 5px;
+  color: red;
+}

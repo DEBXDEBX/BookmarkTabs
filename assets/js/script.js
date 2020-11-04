@@ -271,6 +271,9 @@ el.catList.addEventListener("click", (e) => {
     // get the index from the html
     let index = e.target.dataset.index;
     index = parseInt(index);
+    if (isNaN(index)) {
+      return;
+    }
     catIndex = index;
     tabAudio.play();
     renderBookmarks();
@@ -638,9 +641,45 @@ el.outUlEditReminder.addEventListener("click", (e) => {
 el.pieBtn.addEventListener("click", (e) => {
   if (e.ctrlKey && e.shiftKey) {
     clickAudio.play();
-    display.displayBlock(this.remindersDiv);
+    display.displayBlock(el.remindersDiv);
   }
 });
 el.inSelectDayCode.addEventListener("change", (e) => {
   tabAudio.play();
+});
+//  load and show JSON
+el.showJSONSubmitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  tabAudio.play();
+  el.bookmarksTextareaInput.value = JSON.stringify(arrayOfTabs);
+});
+el.loadJSONBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  tabAudio.play();
+  const data = el.bookmarksTextareaInput.value.trim();
+  if (!data) {
+    warning1Audio.play();
+    display.showAlert("Please load some JSON in the teatarea!", "error");
+    return;
+  }
+  const dataArray = JSON.parse(data);
+  if (dataArray && dataArray.length > 0) {
+    display.displayNone(el.JSONForm);
+    arrayOfTabs = dataArray;
+    renderCategorys();
+    saveBokmarks();
+  }
+});
+el.bookmarksClearTextAreaBtn.addEventListener("click", (e) => {
+  el.bookmarksTextareaInput.value = "";
+});
+el.bookmarksTextareaCancelBtn.addEventListener("click", (e) => {
+  clickAudio.play();
+  display.displayNone(el.JSONForm);
+});
+el.showJSONIcon.addEventListener("click", (e) => {
+  if (e.ctrlKey && e.shiftKey) {
+    clickAudio.play();
+    display.displayBlock(el.JSONForm);
+  }
 });

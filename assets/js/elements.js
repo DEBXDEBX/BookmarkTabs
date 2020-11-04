@@ -62,5 +62,19 @@ class Elements {
 
     // Div
     this.remindersDiv = document.querySelector("#remindersDiv");
+
+    this.bookmarksTextareaInput = document.querySelector(
+      "#bookmarksTextareaInput"
+    );
+    this.showJSONSubmitBtn = document.querySelector("#showJSONSubmitBtn");
+    this.bookmarksClearTextAreaBtn = document.querySelector(
+      "#bookmarksClearTextAreaBtn"
+    );
+    this.loadJSONBtn = document.querySelector("#loadJSONBtn");
+    this.bookmarksTextareaCancelBtn = document.querySelector(
+      "#bookmarksTextareaCancelBtn"
+    );
+    this.JSONForm = document.querySelector("#JSONForm");
+    this.showJSONIcon = document.querySelector("#showJSONIcon");
   }
 }

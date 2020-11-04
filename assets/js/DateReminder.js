@@ -1,7 +1,7 @@
 class DateReminder {
   constructor(dateToSet, text) {
     // dateToSet comes in as a string
-    let dateToSetArray = dateToSet.split("-");
+    const dateToSetArray = dateToSet.split("-");
     this.year = parseInt(dateToSetArray[0]);
     this.month = parseInt(dateToSetArray[1]);
     this.day = parseInt(dateToSetArray[2]);

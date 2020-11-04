@@ -205,6 +205,57 @@
 
 
 
+    <form id="JSONForm">
+      <div class="form-group">
+        <textarea
+          class="form-control"
+          autofocus
+          wrap="hard"
+          placeholder="Bookmarks JSON Area"
+          id="bookmarksTextareaInput"
+          rows="10"
+          cols="200"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <input
+          id="showJSONSubmitBtn"
+          type="submit"
+          class="btn btn-primary form-control"
+          value="ShowJSON"
+        />
+      </div>
+
+      <div class="form-group">
+        <button
+          id="bookmarksClearTextAreaBtn"
+          class="btn btn-dark form-control"
+          type="button"
+        >
+          Clear
+        </button>
+      </div>
+
+      <div class="form-group">
+        <button id="loadJSONBtn" class="btn btn-info form-control" type="button">
+          Load JSON
+        </button>
+      </div>
+
+      <div class="form-group">
+        <button
+          id="bookmarksTextareaCancelBtn"
+          class="btn btn-warning form-control"
+          type="button"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+
+
+
 
     <!-- Message Modal -->
     <div id="myMessageModal" class="modal fade" role="dialog">
@@ -325,6 +376,7 @@
   </div>
 
     <h5 id="pie">&#8719;</h5>
+    <h5 id="showJSONIcon">	&hearts;</h5>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
