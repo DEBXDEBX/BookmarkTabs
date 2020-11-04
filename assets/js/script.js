@@ -666,6 +666,7 @@ el.loadJSONBtn.addEventListener("click", (e) => {
   if (dataArray && dataArray.length > 0) {
     display.displayNone(el.JSONForm);
     arrayOfTabs = dataArray;
+    saveBokmarks();
     el.bookmarksTextareaInput.value = "";
     startUp();
   }
