@@ -651,22 +651,42 @@ el.inSelectDayCode.addEventListener("change", (e) => {
 el.showJSONSubmitBtn.addEventListener("click", (e) => {
   e.preventDefault();
   tabAudio.play();
-  el.bookmarksTextareaInput.value = JSON.stringify(arrayOfTabs);
+  const dataObj = {
+    type: "bookmarkJSON",
+    arrayOfTabs,
+    arrayWeeklyReminder,
+    arrayDateReminder,
+  };
+  el.bookmarksTextareaInput.value = JSON.stringify(dataObj);
 });
 el.loadJSONBtn.addEventListener("click", (e) => {
   e.preventDefault();
   tabAudio.play();
   const data = el.bookmarksTextareaInput.value.trim();
+
   if (!data) {
     warning1Audio.play();
-    display.showAlert("Please load some JSON in the teatarea!", "error");
+    display.showAlert("Please enter JSON in the textarea!", "error");
     return;
   }
-  const dataArray = JSON.parse(data);
-  if (dataArray && dataArray.length > 0) {
+  const dataObj = JSON.parse(data);
+  if (dataObj.type !== "bookmarkJSON") {
+    warning1Audio.play();
+    display.showAlert("This is not a valid JSON bookmark type!", "error");
+    return;
+  }
+  if (
+    Array.isArray(dataObj.arrayOfTabs) &&
+    Array.isArray(dataObj.arrayWeeklyReminder) &&
+    Array.isArray(dataObj.arrayDateReminder)
+  ) {
+    arrayOfTabs = dataObj.arrayOfTabs;
+    arrayWeeklyReminder = dataObj.arrayWeeklyReminder;
+    arrayDateReminder = dataObj.arrayDateReminder;
     display.displayNone(el.JSONForm);
-    arrayOfTabs = dataArray;
     saveBokmarks();
+    saveWeeklyReminders();
+    saveDateReimnders();
     el.bookmarksTextareaInput.value = "";
     startUp();
   }
