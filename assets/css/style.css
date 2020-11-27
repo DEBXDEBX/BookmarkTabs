@@ -288,7 +288,7 @@ li {
   cursor: pointer;
 }
 h4 {
-  color: var(--primary-color);
+  color: #007bff;
   text-align: center;
 }
 
