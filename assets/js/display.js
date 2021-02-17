@@ -55,8 +55,8 @@ class Display {
   }
   paintCategorys(mappedArray) {
     this.displayBlock(this.elements.catHeading);
-    this.displayNone(catList);
-    this.displayNone(bookmarkList);
+    this.displayNone(this.elements.catList);
+    this.displayNone(this.elements.bookmarkList);
     this.clearCategoryDisplay();
     this.clearBookmarkDisplay();
     this.displayNone(this.elements.catHeading);
