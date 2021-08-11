@@ -246,6 +246,10 @@ h3 {
   position: fixed;
   bottom: 0px;
   right: 5px;
+  transition: all 1s ease-out;
+}
+#pie:hover {
+  transform: scale(3) translateX(-7px) translateY(-7px);
 }
 .editReminders,
 .editDateReminders {
@@ -301,4 +305,8 @@ h4 {
   bottom: 0px;
   left: 5px;
   color: red;
+  transition: all 1s ease-out;
+}
+#showJSONIcon:hover {
+  transform: scale(4) translateX(7px) translateY(-7px);
 }
