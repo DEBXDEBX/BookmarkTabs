@@ -178,7 +178,7 @@ const HomeList = () => {
   }
 };
 
-function saveBokmarks() {
+function saveBookmarks() {
   bookmarkStorage.saveArrayToLS(arrayOfTabs);
 }
 function saveWeeklyReminders() {
@@ -248,7 +248,7 @@ el.catList.addEventListener("click", (e) => {
     deleteAudio.play();
     display.showAlert("A category tab was deleted", "success", 1500);
     // save
-    saveBokmarks();
+    saveBookmarks;
 
     if (arrayOfTabs.length === 0) {
       startUp();
@@ -313,7 +313,7 @@ el.addCatBtn.addEventListener("click", (e) => {
     // sort array by name
     sortArrayByName(arrayOfTabs);
     // save
-    saveBokmarks();
+    saveBookmarks;
     // addAudio.play();
     display.showAlert("A new category was added", "success", 1500);
     // hide form
@@ -362,7 +362,7 @@ el.addBookmarkBtn.addEventListener("click", (e) => {
   addBookmarkAudio.play();
 
   // save
-  saveBokmarks();
+  saveBookmarks;
   el.bookmarkForm.reset();
   display.displayNone(el.bookmarkForm);
   display.showAlert("A new bookmark was added", "success", 1500);
@@ -396,7 +396,7 @@ el.bookmarkList.addEventListener("click", (e) => {
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
     btnAudio.play();
     // save
-    saveBokmarks();
+    saveBookmarks;
     renderBookmarks();
     return;
   }
@@ -419,7 +419,7 @@ el.bookmarkList.addEventListener("click", (e) => {
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
     btnAudio.play();
     // save
-    saveBokmarks();
+    saveBookmarks;
     renderBookmarks();
     return;
   }
@@ -439,7 +439,7 @@ el.bookmarkList.addEventListener("click", (e) => {
     arrayOfTabs[catIndex].arrayOfBookmarks.splice(deleteIndex, 1);
     deleteAudio.play();
     // save
-    saveBokmarks();
+    saveBookmarks;
     display.showAlert("A bookmark was deleted", "success", 1500);
     renderBookmarks();
     return;
