@@ -638,7 +638,7 @@ el.outUlEditReminder.addEventListener("click", (e) => {
   }
 });
 
-el.pieBtn.addEventListener("mouseup", (e) => {
+el.pieBtn.addEventListener("click", (e) => {
   if (e.ctrlKey && e.shiftKey) {
     clickAudio.play();
     display.displayBlock(el.remindersDiv);
@@ -699,7 +699,7 @@ el.bookmarksTextareaCancelBtn.addEventListener("click", (e) => {
   el.bookmarksTextareaInput.value = "";
   display.displayNone(el.JSONForm);
 });
-el.showJSONIcon.addEventListener("mouseup", (e) => {
+el.showJSONIcon.addEventListener("click", (e) => {
   if (e.ctrlKey && e.shiftKey) {
     clickAudio.play();
     display.displayBlock(el.JSONForm);
