@@ -11,21 +11,21 @@ class Elements {
     this.catForm = document.querySelector("#catForm");
     this.bookmarkForm = document.querySelector("#bookmarkForm");
     // Form Reminder
-    this.formReminder = document.querySelector("#formReminder");
-    this.formDateReminder = document.querySelector("#formDateReminder");
-    // select btns
+    this.reminderForm = document.querySelector("#reminderForm");
+    this.dateReminderForm = document.querySelector("#dateReminderForm");
+    // select button's
     this.addCatBtn = document.querySelector("#catAddBtn");
     this.cancelCatBtn = document.querySelector("#catCancel");
     this.addBookmarkBtn = document.querySelector("#bookmarkAddBtn");
     this.cancelBookmarkBtn = document.querySelector("#bookmarkCancel");
 
     // select add show forms + / icon
-    this.addShowFormCat = document.querySelector("#catAdd");
-    this.addShowFormBookmark = document.querySelector("#bookmarkAdd");
+    this.catAddIcon = document.querySelector("#catAddIcon");
+    this.bookmarkAddIcon = document.querySelector("#bookmarkAddIcon");
     // select textName and and url
-    this.textCat = document.querySelector("#textCat");
-    this.textBookmark = document.querySelector("#textBookmark");
-    this.textURL = document.querySelector("#textURL");
+    this.catNameInput = document.querySelector("#catNameInput");
+    this.bookmarkNameInput = document.querySelector("#bookmarkNameInput");
+    this.urlInput = document.querySelector("#urlInput");
     // online offline status
     this.onLineStatus = document.querySelector("#status");
     // todays date
@@ -34,35 +34,33 @@ class Elements {
     this.messageDisplay = document.querySelector("#displayMessage");
     // select message border
     this.messageBorder = document.querySelector("#modalBorder");
+    //  search input
+    this.searchTextInput = document.querySelector("#searchTextInput");
 
-    // select the lists
-    this.outUlShowReminder = document.querySelector("#outUlShowReminder");
-    this.outUlEditReminder = document.querySelector("#outUlEditReminder");
-    this.outULShowDateReminder = document.querySelector(
-      "#outULShowDateReminder"
-    );
-    this.outULEditDateReminder = document.querySelector(
-      "#outULEditDateReminder"
-    );
-    // select btn
-    this.inBtnSaveReminder = document.querySelector("#inBtnSaveReminder");
-    this.inBtnCancelReminder = document.querySelector("#inBtnCancelReminder");
-    this.pieBtn = document.querySelector("#pie");
-    this.inBtnSaveDateReminder = document.querySelector(
-      "#inBtnSaveDateReminder"
-    );
-    this.inBtnCancelDateReminder = document.querySelector(
-      "#inBtnCancelDateReminder"
-    );
-    // select input
-    this.inSelectDayCode = document.querySelector("#inSelectDayCode");
-    this.inTextReminder = document.querySelector("#inTextReminder");
-    this.inDateDateReminder = document.querySelector("#inDateDateReminder");
-    this.inTextDateReminder = document.querySelector("#inTextDateReminder");
-
-    // Div
+    // Div container to hide and show
     this.remindersDiv = document.querySelector("#remindersDiv");
-
+    // select the lists
+    this.showReminderList = document.querySelector("#showReminderList");
+    this.editReminderList = document.querySelector("#editReminderList");
+    this.showDateReminderList = document.querySelector("#showDateReminderList");
+    this.editDateReminderList = document.querySelector("#editDateReminderList");
+    // select button's
+    this.saveReminderBtn = document.querySelector("#saveReminderBtn");
+    this.cancelReminderBtn = document.querySelector("#cancelReminderBtn");
+    this.pieBtn = document.querySelector("#pieBtn");
+    this.saveDateReminderBtn = document.querySelector("#saveDateReminderBtn");
+    this.cancelDateReminderBtn = document.querySelector(
+      "#cancelDateReminderBtn"
+    );
+    // select input's
+    this.selectDayCodeInput = document.querySelector("#selectDayCodeInput");
+    this.reminderTextInput = document.querySelector("#reminderTextInput");
+    this.dateReminderDateInput = document.querySelector(
+      "#dateReminderDateInput"
+    );
+    this.dateReminderTextInput = document.querySelector(
+      "#dateReminderTextInput"
+    );
     this.bookmarksTextareaInput = document.querySelector(
       "#bookmarksTextareaInput"
     );
@@ -75,6 +73,6 @@ class Elements {
       "#bookmarksTextareaCancelBtn"
     );
     this.JSONForm = document.querySelector("#JSONForm");
-    this.showJSONIcon = document.querySelector("#showJSONIcon");
+    this.showJSONBtn = document.querySelector("#showJSONBtn");
   }
 }

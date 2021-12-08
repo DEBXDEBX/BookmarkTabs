@@ -16,7 +16,7 @@ class Reminder {
       case 3:
         return "Wednesday";
       case 4:
-        return "Thursdau";
+        return "Thursday";
       case 5:
         return "Friday";
       case 6:

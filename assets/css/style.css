@@ -11,7 +11,6 @@ html,
 body {
   font-family: "Chelsea Market", cursive;
   line-height: 1.7em;
-  /* background-color: black; */
 }
 a {
   text-decoration: none;
@@ -20,11 +19,6 @@ a {
 :root {
   --primary-color: #0f0;
   --secondary-color: #0af30a;
-}
-/* use Variables  */
-h1 {
-  color: var(--primary-color);
-  text-shadow: 2px 2px var(--secondary-color);
 }
 i:hover {
   cursor: pointer;
@@ -35,7 +29,6 @@ i:hover {
 }
 .active {
   color: white;
-  /* box-shadow: 3px 2px 4px white; */
   box-shadow: 5px 4px 9px black;
   transform: scale(1.1);
 }
@@ -58,7 +51,6 @@ nav ul {
   text-align: center;
   box-shadow: 5px 4px 9px black;
 }
-
 nav ul li {
   list-style: none;
   background-color: #d0215cbd;
@@ -127,19 +119,16 @@ h3 > span {
 }
 /* this hides and shows when you hover */
 .spanDiv {
-  /* display: none; */
   visibility: hidden;
 }
 .myFlexItem:hover .spanDiv {
   text-align: center;
-  /* display: block; */
   visibility: visible;
 }
 span {
   font-weight: bold;
   margin: 0px 7px;
 }
-
 .myFlexItem:hover .delete-item {
   text-align: center;
   display: inline;
@@ -152,20 +141,17 @@ a {
   margin: 8px;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
 }
-
 a:hover {
   color: #f805b1;
   text-decoration: none;
   text-shadow: 3px 3px 3px rgba(0, 0, 0, 1);
 }
-
 .pill {
   background: #0d3bef;
   border-left: 4mm ridge #2149d8;
   border-bottom: thick double #2a74dd;
   margin: 20px 7px 0px 7px;
   padding: 5px 10px 5px 10px;
-  /* box-shadow: 3px 3px 3px rgb(103, 241, 11); */
   transition: color 0.6s, box-shadow 0.7s, transform 0.7s;
   transition-timing-function: cubic-bezier(0.45, 1.87, 0.62, 1.6);
   border-radius: 10% / 50%;
@@ -188,7 +174,6 @@ a:hover {
   justify-content: space-around;
   margin: 3px 10px 3px 10px;
 }
-
 /* The headings are h3  */
 h3 {
   color: var(--primary-color);
@@ -200,13 +185,11 @@ h3 {
 #bookmarkAdd {
   margin: 0px 46px;
 }
-
 /* on or off line  */
 .online,
 .offline {
   text-align: center;
 }
-
 .offline {
   color: red;
   text-shadow: 2px 2px red;
@@ -222,7 +205,6 @@ h3 {
 }
 /* *********************************** */
 /* google search */
-
 #googleSearchContainer {
   max-width: 800px;
   width: 80%;
@@ -238,17 +220,17 @@ h3 {
   text-align: center;
   color: #e52674;
 }
-/* // reminders code below ****************************** */
+
 #remindersDiv {
   display: none;
 }
-#pie {
+#pieBtn {
   position: fixed;
   bottom: 0px;
   right: 5px;
   transition: all 1s ease-out;
 }
-#pie:hover {
+#pieBtn:hover {
   transform: scale(3) translateX(-7px) translateY(-7px);
   cursor: pointer;
 }
@@ -265,12 +247,6 @@ h3 {
 .delete-reminder:hover,
 .delete-date-reminder:hover {
   color: rgb(134, 38, 38);
-}
-#formReminder,
-#formDateReminder {
-  max-width: 500px;
-  width: 80%;
-  margin: 0 auto;
 }
 #inSelectDayCode {
   color: blueviolet;
@@ -301,14 +277,14 @@ h4 {
   max-width: 80%;
   margin: 0 auto;
 }
-#showJSONIcon {
+#showJSONBtn {
   position: fixed;
   bottom: 0px;
   left: 5px;
   color: red;
   transition: all 1s ease-out;
 }
-#showJSONIcon:hover {
+#showJSONBtn:hover {
   transform: scale(4) translateX(7px) translateY(-7px);
   cursor: pointer;
 }

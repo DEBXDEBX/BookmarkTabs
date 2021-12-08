@@ -25,8 +25,7 @@ const deleteAudio = document.querySelector("#deleteAudio");
 const tabAudio = document.querySelector("#tabAudio");
 const warning1Audio = document.querySelector("#warning1Audio");
 const warning2Audio = document.querySelector("#warning2Audio");
-// time insert
-let timeH1 = document.querySelector("#todayTime");
+
 // create elements object
 const el = new Elements();
 // Pass elements to display
@@ -41,18 +40,14 @@ const dateReminderStorage = new ArrayStorageLS(DATE_REMINDER_STORAGE_KEY);
 $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
 });
-//The start of program exicution.
+//The start of program execution.
 window.onload = function () {
   startUp();
 };
 //Start Up
 function startUp() {
   bookmarkStartUp();
-
-  // show the date
   getAndShowDate();
-  // call once so you can see time on load of page
-  // displayTime();
   weeklyReminderStartUp();
   reminderDateStartUp();
 }
@@ -106,7 +101,7 @@ function reminderDateStartUp() {
       continue;
     }
   }
-  // reverse arrray
+  // reverse array
   deleteIndexs.reverse();
   // delete all old reminders
   for (let i of deleteIndexs) {
@@ -158,7 +153,7 @@ const getAndShowDate = () => {
   el.todayDate.textContent = date.toLocaleDateString(undefined, options);
 };
 const HomeList = () => {
-  // grab all the catorgory's
+  // grab all the category's
   let tabList = document.getElementsByClassName("cat");
   // create an array from an array like object
   let newArray = Array.from(tabList);
@@ -220,17 +215,17 @@ function renderBookmarks() {
   display.paintBookmarks(arrayOfTabs[catIndex].arrayOfBookmarks);
 }
 // when You click on the +/icon in the cat  heading
-el.addShowFormCat.addEventListener("click", (e) => {
+el.catAddIcon.addEventListener("click", (e) => {
   clickAudio.play();
   display.showCatForm();
   display.displayNone(el.bookmarkList);
-  el.textCat.focus();
+  el.catNameInput.focus();
 });
 // when You click on the +/icon in the bookmark  heading
-el.addShowFormBookmark.addEventListener("click", (e) => {
+el.bookmarkAddIcon.addEventListener("click", (e) => {
   clickAudio.play();
   display.showBookmarkForm();
-  el.textBookmark.focus();
+  el.bookmarkNameInput.focus();
 });
 
 el.catList.addEventListener("click", (e) => {
@@ -283,7 +278,7 @@ el.catList.addEventListener("click", (e) => {
 el.addCatBtn.addEventListener("click", (e) => {
   e.preventDefault();
   // grab the text
-  let catName = el.textCat.value.trim();
+  let catName = el.catNameInput.value.trim();
   // check if text is empty
   if (!catName) {
     warning1Audio.play();
@@ -345,8 +340,8 @@ el.cancelCatBtn.addEventListener("click", (e) => {
 
 el.addBookmarkBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  let bookmarkName = el.textBookmark.value.trim();
-  let bookmarkURL = el.textURL.value.trim();
+  let bookmarkName = el.bookmarkNameInput.value.trim();
+  let bookmarkURL = el.urlInput.value.trim();
   if (!bookmarkName) {
     warning1Audio.play();
     display.showAlert("Please enter a name for the bookmark!", "error");
@@ -460,9 +455,7 @@ window.addEventListener("offline", (e) => display.offlineMessage());
 document.querySelector("#googleBtn").addEventListener("click", (e) => {
   e.preventDefault();
   clickAudio.play();
-  let inputBox = document.querySelector("#googleSearchInput");
-  let searchTerm = inputBox.value;
-  // inputBox.value = "";
+  let searchTerm = el.searchTextInput.value;
   //search google
   window.open("http://google.com/search?q=" + searchTerm);
 });
@@ -470,60 +463,36 @@ document.querySelector("#googleBtn").addEventListener("click", (e) => {
 document.querySelector("#mdnBtn").addEventListener("click", (e) => {
   e.preventDefault();
   clickAudio.play();
-  let inputBox = document.querySelector("#googleSearchInput");
-  let searchTerm = inputBox.value;
-  // inputBox.value = "";
+  let searchTerm = el.searchTextInput.value;
   // search MDN
   window.open("https://developer.mozilla.org/en-US/search?q=" + searchTerm);
 });
 document.querySelector("#youTubeBtn").addEventListener("click", (e) => {
   e.preventDefault();
   clickAudio.play();
-  let inputBox = document.querySelector("#googleSearchInput");
-  let searchTerm = inputBox.value;
-  // inputBox.value = "";
+  let searchTerm = el.searchTextInput.value;
   // search Youtube
   window.open("https://www.youtube.com/results?search_query=" + searchTerm);
 });
 document.querySelector("#stackOverflowBtn").addEventListener("click", (e) => {
   e.preventDefault();
   clickAudio.play();
-  let inputBox = document.querySelector("#googleSearchInput");
-  let searchTerm = inputBox.value;
-  // inputBox.value = "";
+  let searchTerm = el.searchTextInput.value;
   // search stack overflow
   window.open("https://stackoverflow.com/search?q=" + searchTerm);
 });
 
-//  code for the time display
-// ****************************************************
-function displayTime() {
-  let today = new Date();
-  let hoursFromDate = today.getHours();
-
-  let hours = hoursFromDate > 12 ? hoursFromDate - 12 : hoursFromDate;
-
-  let minutes =
-    today.getMinutes() < 10 ? `0${today.getMinutes()}` : today.getMinutes();
-  let time = `${hours}:${minutes} ${hoursFromDate < 12 ? "AM" : "PM"}`;
-  // insert time
-  timeH1.textContent = time;
-}
-// call every 30 seconds
-// setInterval(displayTime, 20000); THIS NEEDS UNCOMMENT TO WORK
-// end of code for the time display
-
 // ******************************* date reminder code **************
-el.inBtnSaveDateReminder.addEventListener("click", (e) => {
+el.saveDateReminderBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  let dateToSet = el.inDateDateReminder.value;
+  let dateToSet = el.dateReminderDateInput.value;
   if (!dateToSet) {
     warning1Audio.play();
     display.showAlert("Please choose a date!", "error");
     return;
   }
 
-  let text = el.inTextDateReminder.value.trim();
+  let text = el.dateReminderTextInput.value.trim();
   if (!text) {
     warning1Audio.play();
     display.showAlert(
@@ -537,21 +506,21 @@ el.inBtnSaveDateReminder.addEventListener("click", (e) => {
   arrayDateReminder.push(dateReminder);
   display.showAlert("A date reminder was saved", "success", 1500);
   addTabAudio.play();
-  el.formDateReminder.reset();
+  el.dateReminderForm.reset();
   dateReminderStorage.saveArrayToLS(arrayDateReminder);
   display.renderEditDateReminders(arrayDateReminder);
 
   display.renderShowDateReminders(filterDateArray(arrayDateReminder));
 });
 
-el.inBtnCancelDateReminder.addEventListener("click", (e) => {
+el.cancelDateReminderBtn.addEventListener("click", (e) => {
   e.preventDefault();
   clickAudio.play();
   display.displayNone(el.remindersDiv);
-  el.formDateReminder.reset();
+  el.dateReminderForm.reset();
 });
 
-el.outULEditDateReminder.addEventListener("click", (e) => {
+el.editDateReminderList.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-date-reminder")) {
     if (!e.ctrlKey) {
       warning1Audio.play();
@@ -574,18 +543,18 @@ el.outULEditDateReminder.addEventListener("click", (e) => {
   }
 });
 
-el.inDateDateReminder.addEventListener("change", (e) => {
+el.dateReminderDateInput.addEventListener("change", (e) => {
   tabAudio.play();
 });
 // *********************************** End Date reminder code ************
 
 //************************************** Weekly reminder code **************************************************** */
-el.inBtnSaveReminder.addEventListener("click", (e) => {
+el.saveReminderBtn.addEventListener("click", (e) => {
   e.preventDefault();
   // get Input
-  let tempDay = inSelectDayCode.value;
+  let tempDay = selectDayCodeInput.value;
 
-  let tempReminder = inTextReminder.value.trim();
+  let tempReminder = reminderTextInput.value.trim();
   if (!tempReminder) {
     warning1Audio.play();
     display.showAlert(
@@ -600,21 +569,21 @@ el.inBtnSaveReminder.addEventListener("click", (e) => {
   arrayWeeklyReminder.push(reminder);
   addTabAudio.play();
   display.showAlert("A weekly reminder was saved", "success", 1500);
-  el.formReminder.reset();
+  el.reminderForm.reset();
   // save to  local storage
   saveWeeklyReminders();
   // redisplay
   display.renderEditReminders(arrayWeeklyReminder);
   display.renderShowReminders(filterWeeklyArray(arrayWeeklyReminder));
 });
-el.inBtnCancelReminder.addEventListener("click", (e) => {
+el.cancelReminderBtn.addEventListener("click", (e) => {
   e.preventDefault();
   clickAudio.play();
   display.displayNone(el.remindersDiv);
-  el.formReminder.reset();
+  el.reminderForm.reset();
 });
 
-el.outUlEditReminder.addEventListener("click", (e) => {
+el.editReminderList.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-reminder")) {
     if (!e.ctrlKey) {
       warning1Audio.play();
@@ -643,7 +612,7 @@ el.pieBtn.addEventListener("click", (e) => {
     display.displayBlock(el.remindersDiv);
   }
 });
-el.inSelectDayCode.addEventListener("change", (e) => {
+el.selectDayCodeInput.addEventListener("change", (e) => {
   tabAudio.play();
 });
 //  load and show JSON
@@ -698,7 +667,7 @@ el.bookmarksTextareaCancelBtn.addEventListener("click", (e) => {
   el.bookmarksTextareaInput.value = "";
   display.displayNone(el.JSONForm);
 });
-el.showJSONIcon.addEventListener("click", (e) => {
+el.showJSONBtn.addEventListener("click", (e) => {
   if (e.ctrlKey && e.shiftKey) {
     clickAudio.play();
     display.displayBlock(el.JSONForm);

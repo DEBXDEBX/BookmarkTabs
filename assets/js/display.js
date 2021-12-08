@@ -151,7 +151,7 @@ class Display {
   //Method
   onlineMessage() {
     this.elements.onLineStatus.innerHTML = `<h4 class="online">System Online</h4>`;
-    // Timeout after 4 sec
+    // Timeout after 7 sec
     const displayTime = 7000;
     setTimeout(function () {
       document.querySelector(".online").remove();
@@ -175,7 +175,7 @@ class Display {
     ></li>`;
     });
     // paint reminders
-    this.elements.outUlEditReminder.innerHTML = html;
+    this.elements.editReminderList.innerHTML = html;
   }
 
   //Method
@@ -186,7 +186,7 @@ class Display {
       html += `<h4 data-index="${index}" class="showReminders">${element.day} ${element.text}</h4>`;
     });
     // paint reminders
-    this.elements.outUlShowReminder.innerHTML = html;
+    this.elements.showReminderList.innerHTML = html;
   }
 
   //Method
@@ -201,7 +201,7 @@ class Display {
     ></li>`;
     });
     // paint reminders
-    this.elements.outULEditDateReminder.innerHTML = html;
+    this.elements.editDateReminderList.innerHTML = html;
   }
 
   //Method
@@ -212,6 +212,6 @@ class Display {
       html += `<h4 data-index="${index}" class="showDateReminders">${element.stringDate} ${element.text}</h4>`;
     });
     // paint reminders
-    this.elements.outULShowDateReminder.innerHTML = html;
+    this.elements.showDateReminderList.innerHTML = html;
   }
 } // End class
