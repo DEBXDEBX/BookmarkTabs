@@ -231,7 +231,7 @@ h3 {
   transition: all 1s ease-out;
 }
 #pieBtn:hover {
-  transform: scale(3) translateX(-7px) translateY(-7px);
+  transform: scale(3) translateX(-7px) translateY(-7px) rotate(360deg);
   cursor: pointer;
 }
 .editReminders,
@@ -285,6 +285,6 @@ h4 {
   transition: all 1s ease-out;
 }
 #showJSONBtn:hover {
-  transform: scale(4) translateX(7px) translateY(-7px);
+  transform: scale(4) translateX(7px) translateY(-7px) rotate(360deg);
   cursor: pointer;
 }
