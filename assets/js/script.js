@@ -15,16 +15,6 @@ let currentMonth = 1 + today.getMonth();
 const BOOKMARK_STORAGE_KEY = "fileBookmark10062019DEBX";
 const REMINDER_STORAGE_KEY = "reminderApril262020DEBX";
 const DATE_REMINDER_STORAGE_KEY = "dateReminderApril272020debx";
-// //Select audio files
-// const addBookmarkAudio = document.querySelector("#addBookmarkAudio");
-// const addTabAudio = document.querySelector("#addTabAudio");
-// const btnAudio = document.querySelector("#btnAudio");
-// const cancelAudio = document.querySelector("#cancelAudio");
-// const clickAudio = document.querySelector("#clickAudio");
-// const deleteAudio = document.querySelector("#deleteAudio");
-// const tabAudio = document.querySelector("#tabAudio");
-// const warning1Audio = document.querySelector("#warning1Audio");
-// const warning2Audio = document.querySelector("#warning2Audio");
 
 // create elements object
 const el = new Elements();
@@ -311,7 +301,6 @@ el.addCatBtn.addEventListener("click", (e) => {
     sortArrayByName(arrayOfTabs);
     // save
     saveBookmarks();
-    // addAudio.play();
     display.showAlert("A new category was added", "success", 1500);
     // hide form
     display.hideCatForm();
@@ -391,7 +380,7 @@ el.bookmarkList.addEventListener("click", (e) => {
 
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
-    sound.btnAudio.play();
+    sound.btnAudio();
     // save
     saveBookmarks();
     renderBookmarks();
@@ -471,14 +460,14 @@ document.querySelector("#mdnBtn").addEventListener("click", (e) => {
 });
 document.querySelector("#youTubeBtn").addEventListener("click", (e) => {
   e.preventDefault();
-  souclickAudio.play();
+  sound.clickAudio.play();
   let searchTerm = el.searchTextInput.value;
   // search Youtube
   window.open("https://www.youtube.com/results?search_query=" + searchTerm);
 });
 document.querySelector("#stackOverflowBtn").addEventListener("click", (e) => {
   e.preventDefault();
-  clickAudio.play();
+  sound.clickAudio.play();
   let searchTerm = el.searchTextInput.value;
   // search stack overflow
   window.open("https://stackoverflow.com/search?q=" + searchTerm);
@@ -517,7 +506,7 @@ el.saveDateReminderBtn.addEventListener("click", (e) => {
 
 el.cancelDateReminderBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  clickAudio.play();
+  sound.clickAudio.play();
   display.displayNone(el.remindersDiv);
   el.dateReminderForm.reset();
 });
@@ -580,7 +569,7 @@ el.saveReminderBtn.addEventListener("click", (e) => {
 });
 el.cancelReminderBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  clickAudio.play();
+  sound.clickAudio.play();
   display.displayNone(el.remindersDiv);
   el.reminderForm.reset();
 });
@@ -610,7 +599,7 @@ el.editReminderList.addEventListener("click", (e) => {
 
 el.pieBtn.addEventListener("click", (e) => {
   if (e.ctrlKey && e.shiftKey) {
-    clickAudio.play();
+    sound.clickAudio.play();
     display.displayBlock(el.remindersDiv);
   }
 });
@@ -665,13 +654,13 @@ el.bookmarksClearTextAreaBtn.addEventListener("click", (e) => {
   el.bookmarksTextareaInput.value = "";
 });
 el.bookmarksTextareaCancelBtn.addEventListener("click", (e) => {
-  clickAudio.play();
+  sound.clickAudio.play();
   el.bookmarksTextareaInput.value = "";
   display.displayNone(el.JSONForm);
 });
 el.showJSONBtn.addEventListener("click", (e) => {
   if (e.ctrlKey && e.shiftKey) {
-    clickAudio.play();
+    sound.clickAudio.play();
     display.displayBlock(el.JSONForm);
   }
 });
