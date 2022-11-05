@@ -32,7 +32,8 @@ i:hover {
   box-shadow: 5px 4px 9px black;
   transform: scale(1.1);
 }
-nav ul {
+nav ul,
+#bookmarkList {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
