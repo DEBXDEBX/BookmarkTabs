@@ -15,19 +15,21 @@ let currentMonth = 1 + today.getMonth();
 const BOOKMARK_STORAGE_KEY = "fileBookmark10062019DEBX";
 const REMINDER_STORAGE_KEY = "reminderApril262020DEBX";
 const DATE_REMINDER_STORAGE_KEY = "dateReminderApril272020debx";
-//Select audio files
-const addBookmarkAudio = document.querySelector("#addBookmarkAudio");
-const addTabAudio = document.querySelector("#addTabAudio");
-const btnAudio = document.querySelector("#btnAudio");
-const cancelAudio = document.querySelector("#cancelAudio");
-const clickAudio = document.querySelector("#clickAudio");
-const deleteAudio = document.querySelector("#deleteAudio");
-const tabAudio = document.querySelector("#tabAudio");
-const warning1Audio = document.querySelector("#warning1Audio");
-const warning2Audio = document.querySelector("#warning2Audio");
+// //Select audio files
+// const addBookmarkAudio = document.querySelector("#addBookmarkAudio");
+// const addTabAudio = document.querySelector("#addTabAudio");
+// const btnAudio = document.querySelector("#btnAudio");
+// const cancelAudio = document.querySelector("#cancelAudio");
+// const clickAudio = document.querySelector("#clickAudio");
+// const deleteAudio = document.querySelector("#deleteAudio");
+// const tabAudio = document.querySelector("#tabAudio");
+// const warning1Audio = document.querySelector("#warning1Audio");
+// const warning2Audio = document.querySelector("#warning2Audio");
 
 // create elements object
 const el = new Elements();
+// create audio object
+const sound = new Audio();
 // Pass elements to display
 const display = new Display(el, $);
 //*********************************** */
@@ -216,14 +218,14 @@ function renderBookmarks() {
 }
 // when You click on the +/icon in the cat  heading
 el.catAddIcon.addEventListener("click", (e) => {
-  clickAudio.play();
+  sound.clickAudio.play();
   display.showCatForm();
   display.displayNone(el.bookmarkList);
   el.catNameInput.focus();
 });
 // when You click on the +/icon in the bookmark  heading
 el.bookmarkAddIcon.addEventListener("click", (e) => {
-  clickAudio.play();
+  sound.clickAudio.play();
   display.showBookmarkForm();
   el.bookmarkNameInput.focus();
 });
@@ -240,7 +242,7 @@ el.catList.addEventListener("click", (e) => {
     }
     catIndex = index;
     arrayOfTabs.splice(catIndex, 1);
-    deleteAudio.play();
+    sound.deleteAudio.play();
     display.showAlert("A category tab was deleted", "success", 1500);
     // save
     saveBookmarks();
@@ -270,7 +272,7 @@ el.catList.addEventListener("click", (e) => {
       return;
     }
     catIndex = index;
-    tabAudio.play();
+    sound.tabAudio.play();
     renderBookmarks();
   }
 });
@@ -281,7 +283,7 @@ el.addCatBtn.addEventListener("click", (e) => {
   let catName = el.catNameInput.value.trim();
   // check if text is empty
   if (!catName) {
-    warning1Audio.play();
+    sound.warning1Audio.play();
     display.showAlert("Please enter a name for the Categroy!", "error");
     return;
   }
@@ -298,13 +300,13 @@ el.addCatBtn.addEventListener("click", (e) => {
   });
   // check for taken name
   if (isTaken) {
-    warning2Audio.play();
+    sound.warning2Audio.play();
     display.showAlert("That name is taken", "error");
     catIndex = -243;
   } else {
     // push newTab into the array
     arrayOfTabs.push(newTab);
-    addBookmarkAudio.play();
+    sound.addBookmarkAudio.play();
     // sort array by name
     sortArrayByName(arrayOfTabs);
     // save
@@ -323,7 +325,7 @@ el.addCatBtn.addEventListener("click", (e) => {
 
 // when You click on cancel btn on the cat form
 el.cancelCatBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
   // reset form
   el.catForm.reset();
   // hide form
@@ -343,18 +345,18 @@ el.addBookmarkBtn.addEventListener("click", (e) => {
   let bookmarkName = el.bookmarkNameInput.value.trim();
   let bookmarkURL = el.urlInput.value.trim();
   if (!bookmarkName) {
-    warning1Audio.play();
+    sound.warning1Audio.play();
     display.showAlert("Please enter a name for the bookmark!", "error");
     return;
   }
   if (!bookmarkURL) {
-    warning2Audio.play();
+    sound.warning2Audio.play();
     display.showAlert("Please enter an address for the bookmark!", "error");
     return;
   }
   let newBookmark = new Bookmark(bookmarkName, bookmarkURL);
   arrayOfTabs[catIndex].arrayOfBookmarks.push(newBookmark);
-  addBookmarkAudio.play();
+  sound.addBookmarkAudio.play();
 
   // save
   saveBookmarks();
@@ -366,7 +368,7 @@ el.addBookmarkBtn.addEventListener("click", (e) => {
 
 // when You click on cancel btn on the bookmark form
 el.cancelBookmarkBtn.addEventListener("click", (e) => {
-  cancelAudio.play();
+  sound.cancelAudio.play();
   // reset form
   el.bookmarkForm.reset();
   // hide form
@@ -389,7 +391,7 @@ el.bookmarkList.addEventListener("click", (e) => {
 
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
-    btnAudio.play();
+    sound.btnAudio.play();
     // save
     saveBookmarks();
     renderBookmarks();
@@ -412,7 +414,7 @@ el.bookmarkList.addEventListener("click", (e) => {
 
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
-    btnAudio.play();
+    sound.btnAudio.play();
     // save
     saveBookmarks();
     renderBookmarks();
@@ -421,7 +423,7 @@ el.bookmarkList.addEventListener("click", (e) => {
 
   if (e.target.classList.contains("delete-item")) {
     if (!e.ctrlKey) {
-      warning1Audio.play();
+      sound.warning1Audio.play();
       display.showAlert(
         "You have to hold down ctrl key to make a deletion",
         "error"
@@ -432,7 +434,7 @@ el.bookmarkList.addEventListener("click", (e) => {
     let deleteIndex = e.target.parentElement.dataset.index;
     deleteIndex = parseInt(deleteIndex);
     arrayOfTabs[catIndex].arrayOfBookmarks.splice(deleteIndex, 1);
-    deleteAudio.play();
+    sound.deleteAudio.play();
     // save
     saveBookmarks();
     display.showAlert("A bookmark was deleted", "success", 1500);
@@ -454,7 +456,7 @@ window.addEventListener("offline", (e) => display.offlineMessage());
 // Search box
 document.querySelector("#googleBtn").addEventListener("click", (e) => {
   e.preventDefault();
-  clickAudio.play();
+  sound.clickAudio.play();
   let searchTerm = el.searchTextInput.value;
   //search google
   window.open("http://google.com/search?q=" + searchTerm);
@@ -462,14 +464,14 @@ document.querySelector("#googleBtn").addEventListener("click", (e) => {
 
 document.querySelector("#mdnBtn").addEventListener("click", (e) => {
   e.preventDefault();
-  clickAudio.play();
+  sound.clickAudio.play();
   let searchTerm = el.searchTextInput.value;
   // search MDN
   window.open("https://developer.mozilla.org/en-US/search?q=" + searchTerm);
 });
 document.querySelector("#youTubeBtn").addEventListener("click", (e) => {
   e.preventDefault();
-  clickAudio.play();
+  souclickAudio.play();
   let searchTerm = el.searchTextInput.value;
   // search Youtube
   window.open("https://www.youtube.com/results?search_query=" + searchTerm);
@@ -487,14 +489,14 @@ el.saveDateReminderBtn.addEventListener("click", (e) => {
   e.preventDefault();
   let dateToSet = el.dateReminderDateInput.value;
   if (!dateToSet) {
-    warning1Audio.play();
+    sound.warning1Audio.play();
     display.showAlert("Please choose a date!", "error");
     return;
   }
 
   let text = el.dateReminderTextInput.value.trim();
   if (!text) {
-    warning1Audio.play();
+    sound.warning1Audio.play();
     display.showAlert(
       "Please enter a message for your date reminder!",
       "error"
@@ -505,7 +507,7 @@ el.saveDateReminderBtn.addEventListener("click", (e) => {
   let dateReminder = new DateReminder(dateToSet, text);
   arrayDateReminder.push(dateReminder);
   display.showAlert("A date reminder was saved", "success", 1500);
-  addTabAudio.play();
+  sound.addTabAudio.play();
   el.dateReminderForm.reset();
   dateReminderStorage.saveArrayToLS(arrayDateReminder);
   display.renderEditDateReminders(arrayDateReminder);
@@ -523,7 +525,7 @@ el.cancelDateReminderBtn.addEventListener("click", (e) => {
 el.editDateReminderList.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-date-reminder")) {
     if (!e.ctrlKey) {
-      warning1Audio.play();
+      sound.warning1Audio.play();
       display.showAlert(
         "Please hold down the control key and click the trash can to make a deletion!",
         "error"
@@ -534,7 +536,7 @@ el.editDateReminderList.addEventListener("click", (e) => {
 
     arrayDateReminder.splice(deleteIndex, 1);
     display.showAlert("A date reminder was deleted", "success", 1500);
-    deleteAudio.play();
+    sound.deleteAudio.play();
     // save to  local storage
     dateReminderStorage.saveArrayToLS(arrayDateReminder);
     // redisplay
@@ -544,7 +546,7 @@ el.editDateReminderList.addEventListener("click", (e) => {
 });
 
 el.dateReminderDateInput.addEventListener("change", (e) => {
-  tabAudio.play();
+  sound.tabAudio.play();
 });
 // *********************************** End Date reminder code ************
 
@@ -556,7 +558,7 @@ el.saveReminderBtn.addEventListener("click", (e) => {
 
   let tempReminder = reminderTextInput.value.trim();
   if (!tempReminder) {
-    warning1Audio.play();
+    sound.warning1Audio.play();
     display.showAlert(
       "Please enter a message for your weekly reminder!",
       "error"
@@ -567,7 +569,7 @@ el.saveReminderBtn.addEventListener("click", (e) => {
   let reminder = new Reminder(tempDay, tempReminder);
   // push reminder
   arrayWeeklyReminder.push(reminder);
-  addTabAudio.play();
+  sound.addTabAudio.play();
   display.showAlert("A weekly reminder was saved", "success", 1500);
   el.reminderForm.reset();
   // save to  local storage
@@ -586,7 +588,7 @@ el.cancelReminderBtn.addEventListener("click", (e) => {
 el.editReminderList.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete-reminder")) {
     if (!e.ctrlKey) {
-      warning1Audio.play();
+      sound.warning1Audio.play();
       display.showAlert(
         "Please hold down the control key and click the trash can to make a deletion!",
         "error"
@@ -597,7 +599,7 @@ el.editReminderList.addEventListener("click", (e) => {
     let deleteIndex = e.target.parentElement.dataset.index;
     display.showAlert("A weekly reminder was deleted", "success", 1500);
     arrayWeeklyReminder.splice(deleteIndex, 1);
-    deleteAudio.play();
+    sound.deleteAudio.play();
     // save to  local storage
     saveWeeklyReminders();
     // redisplay
@@ -613,12 +615,12 @@ el.pieBtn.addEventListener("click", (e) => {
   }
 });
 el.selectDayCodeInput.addEventListener("change", (e) => {
-  tabAudio.play();
+  sound.tabAudio.play();
 });
 //  load and show JSON
 el.showJSONSubmitBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  tabAudio.play();
+  sound.tabAudio.play();
   const dataObj = {
     type: "bookmarkJSON",
     arrayOfTabs,
@@ -629,17 +631,17 @@ el.showJSONSubmitBtn.addEventListener("click", (e) => {
 });
 el.loadJSONBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  tabAudio.play();
+  sound.tabAudio.play();
   const data = el.bookmarksTextareaInput.value.trim();
 
   if (!data) {
-    warning1Audio.play();
+    sound.warning1Audio.play();
     display.showAlert("Please enter JSON in the textarea!", "error");
     return;
   }
   const dataObj = JSON.parse(data);
   if (dataObj.type !== "bookmarkJSON") {
-    warning1Audio.play();
+    sound.warning1Audio.play();
     display.showAlert("This is not a valid JSON bookmark type!", "error");
     return;
   }
