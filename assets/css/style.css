@@ -2,7 +2,6 @@
 * {
   /* padding will not add to the ACTUALLY WIDTH OF THE BOX */
   box-sizing: border-box;
-
   margin: 0;
   padding: 0;
 }
@@ -12,13 +11,21 @@ body {
   font-family: "Chelsea Market", cursive;
   line-height: 1.7em;
 }
-a {
-  text-decoration: none;
-}
 /* Create Variables */
 :root {
   --primary-color: #0f0;
   --secondary-color: #0af30a;
+}
+h3 > span {
+  font-weight: 900;
+  color: #2de11d;
+}
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
 }
 i:hover {
   cursor: pointer;
@@ -30,6 +37,7 @@ i:hover {
 .active {
   color: white;
   box-shadow: 5px 4px 9px black;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
   transform: scale(1.1);
 }
 nav ul,
@@ -45,15 +53,14 @@ nav ul,
 #bookmarkHeading {
   margin: 22px;
   text-align: center;
+  text-shadow: 2px 2px black;
   background-color: #4e5357;
   border-radius: 15px;
   padding: 0.45rem;
   color: var(--primary-color);
-  text-align: center;
   box-shadow: 5px 4px 9px black;
 }
 nav ul li {
-  list-style: none;
   background-color: #d0215cbd;
   color: rgb(0, 0, 0);
   padding: 3px 10px;
@@ -61,11 +68,11 @@ nav ul li {
   border-radius: 10px 10px 0px 0px;
   font-weight: 700;
   font-size: 1.2rem;
-  transition: color 0.3s, box-shadow 0.7s, transform 0.7s;
-  transition-timing-function: cubic-bezier(0.45, 1.87, 0.62, 1.6);
+  transition: all 0.5s ease-in;
 }
 nav ul li:hover {
   color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
 }
 .moveUp,
 .moveDown,
@@ -97,10 +104,7 @@ nav ul li:hover {
   border: 20px solid #2de11d;
 }
 /* END CODE FOR MESSAGES  */
-h3 > span {
-  font-weight: 900;
-  color: #2de11d;
-}
+
 #catForm,
 #bookmarkForm {
   max-width: 70%;
@@ -153,7 +157,7 @@ a:hover {
   border-bottom: thick double #2a74dd;
   margin: 20px 7px 0px 7px;
   padding: 5px 10px 5px 10px;
-  transition: color 0.6s, box-shadow 0.7s, transform 0.7s;
+  transition: color 1.9s, box-shadow 0.7s, transform 0.7s;
   transition-timing-function: cubic-bezier(0.45, 1.87, 0.62, 1.6);
   border-radius: 10% / 50%;
 }
@@ -175,12 +179,7 @@ a:hover {
   justify-content: space-around;
   margin: 3px 10px 3px 10px;
 }
-/* The headings are h3  */
-h3 {
-  color: var(--primary-color);
-  text-shadow: 2px 2px black;
-  text-align: center;
-}
+
 /* The gap between the show form icons  */
 #catAdd,
 #bookmarkAdd {
@@ -193,7 +192,7 @@ h3 {
 }
 .offline {
   color: red;
-  text-shadow: 2px 2px red;
+  text-shadow: 2px 2px black;
 }
 #status {
   margin-top: 25px;
@@ -232,7 +231,7 @@ h3 {
   transition: all 1s ease-out;
 }
 #pieBtn:hover {
-  transform: scale(3) translateX(-7px) translateY(-7px) rotate(360deg);
+  transform: scale(3) translateX(-7px) translateY(-7px);
   cursor: pointer;
 }
 .editReminders,
@@ -262,9 +261,7 @@ h3 {
   padding: 33px;
   border-radius: 33px;
 }
-li {
-  list-style-type: none;
-}
+
 .trash:hover {
   cursor: pointer;
 }
@@ -286,6 +283,6 @@ h4 {
   transition: all 1s ease-out;
 }
 #showJSONBtn:hover {
-  transform: scale(4) translateX(7px) translateY(-7px) rotate(360deg);
+  transform: scale(4) translateX(7px) translateY(-7px);
   cursor: pointer;
 }

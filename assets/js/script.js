@@ -380,7 +380,7 @@ el.bookmarkList.addEventListener("click", (e) => {
 
     // swap array elements
     [arr[index], arr[moveTo]] = [arr[moveTo], arr[index]];
-    sound.btnAudio();
+    sound.btnAudio.play();
     // save
     saveBookmarks();
     renderBookmarks();
