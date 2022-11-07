@@ -1,5 +1,5 @@
 class Audio {
-  constructor(name) {
+  constructor() {
     this.addBookmarkAudio = document.querySelector("#addBookmarkAudio");
     this.addTabAudio = document.querySelector("#addTabAudio");
     this.btnAudio = document.querySelector("#btnAudio");
