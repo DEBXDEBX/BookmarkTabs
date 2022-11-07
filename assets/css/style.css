@@ -210,10 +210,12 @@ a:hover {
 .delete-date-reminder:hover {
   color: rgb(134, 38, 38);
 }
-#inSelectDayCode {
+
+#selectDayCodeInput {
   color: blueviolet;
   width: 100%;
   padding: 0.375rem 0.75rem;
+  outline: none;
 }
 .weeklyReminder,
 .dateReminder {
